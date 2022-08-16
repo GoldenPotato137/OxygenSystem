@@ -1,0 +1,9 @@
+name: OxygenSystem
+version: '${project.version}'
+main: cn.goldenpotato.oxygensystem.OxygenSystem
+api-version: 1.14
+commands:
+  oxygen:
+    description: "OxygenSystem"
+    aliases: [ox]
+    usage: "/oxygen"

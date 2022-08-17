@@ -15,7 +15,7 @@ public class OxygenUtil
 {
     public static void ShowOxygen(Player player)
     {
-        float per = (float) OxygenSystem.playerOxygen.get(player.getUniqueId()) / OxygenCalculator.GetMaxOxygen(player);
+        float per = (float) (OxygenSystem.playerOxygen.get(player.getUniqueId()) / OxygenCalculator.GetMaxOxygen(player));
         int cnt = Math.round(per * 20);
         if(SealedRoomCalculator.GetBelong(player.getLocation())!=0 && cnt==20)
             return;

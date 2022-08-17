@@ -35,6 +35,8 @@ public class MessageManager
         msg.AlreadySealed = messageReader.getString("AlreadySealed","");
         msg.NotEnabled = messageReader.getString("NotEnabled","");
         msg.OxygenStation_NotInRoom = messageReader.getString("OxygenStation_NotInRoom","");
+        msg.CantPlace = messageReader.getString("CantPlace", "");
+        msg.CantCraft = messageReader.getString("CantCraft", "");
 
         msg.MaskUpgrade_WrongTier = messageReader.getString("MaskUpgrade_WrongTier","");
         msg.Item_MaskUpgradeT1 = messageReader.getString("Item_MaskUpgradeT1","");

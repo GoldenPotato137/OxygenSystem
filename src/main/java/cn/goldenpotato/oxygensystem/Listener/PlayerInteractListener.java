@@ -9,14 +9,22 @@ import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
 import cn.goldenpotato.oxygensystem.Util.Util;
 import org.bukkit.Sound;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
@@ -162,13 +170,101 @@ public class PlayerInteractListener implements Listener
             if(Config.PlayEnterRoomSound)
                 Util.PlaySound(event.getPlayer(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT);
         }
+        if(event.getPlayer().isSprinting()) {
+            OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnRunning / 20);
+        }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void OnPlayerConsume(PlayerItemConsumeEvent event)
     {
-        if (!Config.EnableWorlds.contains(event.getPlayer().getWorld().getName())) return;
-        if(event.getItem().isSimilar(OxygenTank.GetItem()))
+        if(event.getItem().isSimilar(OxygenTankProembryo.GetItem())) event.setCancelled(true);
+        if (!Config.EnableWorlds.contains(event.getPlayer().getWorld().getName())){
+            if(event.getItem().isSimilar(OxygenTank.GetItem())) event.setCancelled(true);
+        }
+        if(event.getItem().isSimilar(OxygenTank.GetItem())) {
             OxygenCalculator.ConsumeOxygenTank(event.getPlayer());
+            event.setReplacement(OxygenTankProembryo.GetItem());
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void OnPlaceBlock(BlockPlaceEvent event)
+    {
+        ItemStack item = event.getItemInHand().clone();
+        if(item.isSimilar(MaskUpgradeT1.GetItem()) || item.isSimilar(MaskUpgradeT2.GetItem()) || item.isSimilar(MaskUpgradeT3.GetItem()))
+        {
+            Util.Message(event.getPlayer(), MessageManager.msg.CantPlace);
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void OnCraftItem(CraftItemEvent event)
+    {
+        Inventory inv = event.getInventory();
+        for (ItemStack item : inv)
+        {
+            if(item != null && !item.isSimilar(event.getInventory().getResult())) {
+                if (item.isSimilar(MaskUpgradeT1.GetItem())
+                        || item.isSimilar(MaskUpgradeT2.GetItem())
+                        || item.isSimilar(MaskUpgradeT3.GetItem())
+                        || item.isSimilar(RoomDetector.GetItem())
+                        || item.isSimilar(BootStone.GetItem())
+                ) {
+
+                    Util.Message(event.getWhoClicked(), MessageManager.msg.CantCraft);
+                    event.setCancelled(true);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void OnBrewDone(BrewEvent event)
+    {
+        Inventory inv = event.getContents();
+        for (ItemStack item : inv)
+        {
+            if(item != null) {
+                if (item.isSimilar(OxygenTank.GetItem()) || item.isSimilar(OxygenTankProembryo.GetItem()))
+                {
+                    event.setCancelled(true);
+                }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onInventoryClick(InventoryClickEvent e) {
+        if(e.getInventory().getType() == InventoryType.ANVIL) {
+            if(e.getCurrentItem() != null) {
+                ItemStack item = e.getCurrentItem();
+                if(item.isSimilar(MaskUpgradeT1.GetItem())
+                        || item.isSimilar(MaskUpgradeT2.GetItem())
+                        || item.isSimilar(MaskUpgradeT3.GetItem())
+                        || item.isSimilar(RoomDetector.GetItem())
+                        || item.isSimilar(BootStone.GetItem())
+                        || item.isSimilar(OxygenTank.GetItem())
+                        || item.isSimilar(OxygenTankProembryo.GetItem())
+                        || item.isSimilar(OxygenGenerator.GetItem())
+                        || item.isSimilar(OxygenStation.GetItem()))
+                    e.setCancelled(true);
+            }
+        }
+    }
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void OnPlayerDamaged(EntityDamageByEntityEvent event) {
+        if(event.getDamager() instanceof Player) {
+            Player player = (Player) event.getDamager();
+            OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
+        }
+    }
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void OnPlayerShootArrow(EntityShootBowEvent event) {
+        if(event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
+        }
     }
 }

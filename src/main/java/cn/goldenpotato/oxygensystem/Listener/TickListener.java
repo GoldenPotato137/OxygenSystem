@@ -1,6 +1,7 @@
 package cn.goldenpotato.oxygensystem.Listener;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
+import cn.goldenpotato.oxygensystem.Item.OxygenTankProembryo;
 import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
@@ -23,10 +24,8 @@ public class TickListener implements Listener
         {
             if(!Config.EnableWorlds.contains(player.getWorld().getName())) continue;
             if(player.getGameMode()!= GameMode.SURVIVAL) continue;
-
             if(!OxygenSystem.playerOxygen.containsKey(player.getUniqueId()))
-                OxygenSystem.playerOxygen.put(player.getUniqueId(), OxygenCalculator.GetMaxOxygen(player));
-
+                OxygenSystem.playerOxygen.put(player.getUniqueId(), (double) OxygenCalculator.GetMaxOxygen(player));
             if(SealedRoomCalculator.GetBelong(player.getLocation())==0)
             {
                 boolean result = OxygenCalculator.SetOxygen(player, -1);
@@ -39,6 +38,7 @@ public class TickListener implements Listener
                     {
                         oxygenTank.add(-1);
                         OxygenCalculator.ConsumeOxygenTank(player);
+                        player.getInventory().addItem(OxygenTankProembryo.GetItem());
                     }
                 }
             }

@@ -14,6 +14,10 @@ OxygenTank: 300
 RoomOxygenAdd: 5
 #The amount of oxygen recovered by a click of an oxygen station, unit: second
 OxygenStationOxygenAdd: 60
+#实在不会写，对其他实体造成伤害时减少的氧气量
+OxygenReducedOnDamagedOthers: 0.5
+#The amount of oxygen when player running,unit: second/s
+OxygenReducedOnRunning: 0.2
 
 #Sound
 #Whether to play the machine startup sound

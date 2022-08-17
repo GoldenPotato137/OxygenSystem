@@ -54,4 +54,6 @@ public class Message
     public String SubCommand_Remove_Usage;
     public String SubCommand_Help_Usage;
     public String SubCommand_Help_NoSuchCommand;
+    public String CantPlace;
+    public String CantCraft;
 }

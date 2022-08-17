@@ -75,9 +75,10 @@ public class OxygenCalculator
         return Config.OxygenMask.get(Math.min(Config.OxygenMask.size()-1,GetMaskTier(player)));
     }
 
-    public static boolean SetOxygen(Player player, int delta)
+    public static boolean SetOxygen(Player player, double delta)
     {
-        int oxygen = OxygenSystem.playerOxygen.get(player.getUniqueId());
+        double oxygen = 0;
+        if (OxygenSystem.playerOxygen != null) try{oxygen = OxygenSystem.playerOxygen.get(player.getUniqueId());} catch (NullPointerException ignored){}
         oxygen += delta;
         oxygen = Math.max(oxygen, 0);
         oxygen = Math.min(oxygen, GetMaxOxygen(player));

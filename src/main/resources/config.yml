@@ -1,57 +1,58 @@
 #简体中文：zh-CN
-Language: zh-CN
+#English: en-US
+Language: en-US
 
-#启用氧气系统的世界，不建议手动修改
+#Oxygen system enabled world, manual modification is not recommended
 Worlds: []
 
-#各等级氧气面罩的氧气容纳量，单位：秒
-#其中，第一个是没有氧气面罩的时间
+#Oxygen holding capacity of each grade of oxygen mask, unit: second
+#Of these, the first is the time without an oxygen mask
 OxygenMask: [20, 600, 1200, 1800]
-#一个氧气罐能恢复的氧气量，单位：秒
+#The amount of oxygen that an oxygen tank can recover, unit: second
 OxygenTank: 300
-#在气密室中一秒恢复氧气量，单位：秒/s
+#The amount of oxygen recovered in hermetic cabin for one second, unit: second/s
 RoomOxygenAdd: 5
-#点击一次氧气站恢复的氧气量，单位：秒
+#The amount of oxygen recovered by a click of an oxygen station, unit: second
 OxygenStationOxygenAdd: 60
 
-#声音相关
-#是否播放机器启动的声音
+#Sound
+#Whether to play the machine startup sound
 PlayMachineStartUpSound: true
-#是否在进入/离开气密室时播放气体流动的声音
+#Whether to play gas flow sound when entering/exiting a hermetic cabin
 PlayEnterRoomSound: true
-#是否在气密室被破坏时播放声音
+#Whether to play a sound when a hermetic cabin is broken
 PlayAirLockBreakSound: true
-#是否在升级物品(目前为升级氧气面罩)时播放声音
+#Whether to play a sound when upgrading an item
 PlayItemUpgradeSound: true
-#是否在氧气罐被使用时播放声音
+#Whether to play a sound when the oxygen tank is used
 PlayOxygenTankUseSound: true
-#是否在氧气站冲氧时播放声音
+#Whether to play a sound when infusing oxygen at the oxygen station
 PlayRefillOxygenSound: true
 
-#是否启用本插件内置合成表
-#如果需要更高程度的定制，可以考虑使用合成表插件，使用/oxygen get 来获取所有物品
+#Whether to enable the built-in synthesis table of this plugin
+#If you need a higher degree of customization, consider using the other Table plugin, use /oxygen get to get all items
 EnableIngredient: true
 # ABCDEFGHI -> ABC
 #              DEF
 #              GHI
-#物品名可以在这里找到：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-#氧气面罩升级器T1
+#Item name can be found here：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+#Oxygen system Upgrader T1
 OxygenMaskT1Ingredient: ["COAL","COAL","COAL","COAL","IRON_INGOT","COAL","COAL","COAL","COAL"]
-#氧气面罩升级器T2
+#Oxygen system Upgrader T2
 OxygenMaskT2Ingredient: ["AIR","DIAMOND","AIR","DIAMOND","GOLD_INGOT","DIAMOND","AIR","DIAMOND","AIR"]
-#氧气面罩升级器T3
+#Oxygen system Upgrader T3
 OxygenMaskT3Ingredient: ["AIR","DIAMOND","AIR","DIAMOND","NETHER_STAR","DIAMOND","AIR","DIAMOND","AIR"]
-#氧气生成器
+#Oxygen Generator
 OxygenGeneratorIngredient: ['IRON_INGOT','GOLD_INGOT','IRON_INGOT','DIAMOND','SMOKER','DIAMOND','IRON_INGOT','GOLD_INGOT','IRON_INGOT']
-#氧气站
+#Oxygen Station
 OxygenStationIngredient: ['IRON_INGOT','GOLD_INGOT','IRON_INGOT','GOLD_INGOT','LOOM','GOLD_INGOT','IRON_INGOT','GOLD_INGOT','IRON_INGOT']
-#启动石
+#Start Stone
 BootStoneIngredient: ['AIR','AIR','AIR','AIR','FLINT_AND_STEEL','IRON_INGOT','AIR','IRON_INGOT','AIR']
-#氧气罐（空的）
+#Oxygen Tank (Empty)
 OxygenTankProembryoIngredient: ['AIR','IRON_INGOT','AIR','IRON_INGOT','SLIME_BALL','IRON_INGOT','AIR','IRON_INGOT','AIR']
 
 
-#是否启用Debug模式
-#Debug模式下，创建新气密室或破坏气密室时，被认为是气密室墙壁的方块会被替换为彩色玻璃方块以便观察
-#危险选项，谨慎使用
+#Debug mode
+#In Debug mode, when creating a new airlock or destroying an airlock,
+#the blocks that are considered to be the walls of the airlock will be replaced with stained-glass blocks for easy viewing.
 Debug: false

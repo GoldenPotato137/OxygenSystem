@@ -40,7 +40,7 @@ public class CommandManager implements CommandExecutor, TabCompleter
         }
         if(args.length==0)
         {
-//            Util.Message(sender,MessageManager.msg.SubCommand_Help_Usage); //todo
+            Util.Message(sender,MessageManager.msg.SubCommand_Help_Usage);
             return true;
         }
         for (SubCommand subCommand : subCommands)

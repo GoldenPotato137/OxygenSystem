@@ -8,6 +8,7 @@ import cn.goldenpotato.oxygensystem.Item.*;
 import cn.goldenpotato.oxygensystem.Listener.BlockListener;
 import cn.goldenpotato.oxygensystem.Listener.PlayerInteractListener;
 import cn.goldenpotato.oxygensystem.Listener.TickListener;
+import cn.goldenpotato.oxygensystem.Metrics.Metrics;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -42,6 +43,11 @@ public final class OxygenSystem extends JavaPlugin
         playerOxygen = new java.util.HashMap<>();
 
         AddRecipe();
+
+        //Metrics
+        int pluginId = 16115;
+        Metrics metrics = new Metrics(this, pluginId);
+        metrics.addCustomChart(new Metrics.SimplePie("locale", () -> Config.Language));
     }
 
     void AddRecipe()

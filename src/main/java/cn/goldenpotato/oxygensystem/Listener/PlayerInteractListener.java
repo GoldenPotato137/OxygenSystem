@@ -175,7 +175,7 @@ public class PlayerInteractListener implements Listener
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void OnPlayerConsume(PlayerItemConsumeEvent event)
     {
         if(event.getItem().isSimilar(OxygenTankProembryo.GetItem())) event.setCancelled(true);
@@ -188,20 +188,18 @@ public class PlayerInteractListener implements Listener
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void OnPlaceBlock(BlockPlaceEvent event)
     {
         ItemStack item = event.getItemInHand().clone();
         if(item.isSimilar(MaskUpgradeT1.GetItem()) || item.isSimilar(MaskUpgradeT2.GetItem()) || item.isSimilar(MaskUpgradeT3.GetItem()))
         {
-            System.out.println(item.getAmount());
-            System.out.println(MaskUpgradeT1.GetItem().getAmount());
             Util.Message(event.getPlayer(), MessageManager.msg.CantPlace);
             event.setCancelled(true);
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void OnCraftItem(CraftItemEvent event)
     {
         Inventory inv = event.getInventory();
@@ -222,7 +220,7 @@ public class PlayerInteractListener implements Listener
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void OnBrewDone(BrewEvent event)
     {
         Inventory inv = event.getContents();
@@ -237,7 +235,7 @@ public class PlayerInteractListener implements Listener
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onInventoryClick(InventoryClickEvent e) {
         if(e.getInventory().getType() == InventoryType.ANVIL) {
             if(e.getCurrentItem() != null) {
@@ -259,14 +257,14 @@ public class PlayerInteractListener implements Listener
     public void OnPlayerDamaged(EntityDamageByEntityEvent event) {
         if(event.getDamager() instanceof Player) {
             Player player = (Player) event.getDamager();
-            OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers / 20);
+            OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
         }
     }
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnPlayerShootArrow(EntityShootBowEvent event) {
         if(event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
-            OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers / 20);
+            OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
         }
     }
 }

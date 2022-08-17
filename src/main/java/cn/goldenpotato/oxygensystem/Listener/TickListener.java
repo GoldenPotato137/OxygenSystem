@@ -1,6 +1,7 @@
 package cn.goldenpotato.oxygensystem.Listener;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
+import cn.goldenpotato.oxygensystem.Item.OxygenTankProembryo;
 import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
@@ -39,6 +40,7 @@ public class TickListener implements Listener
                     {
                         oxygenTank.add(-1);
                         OxygenCalculator.ConsumeOxygenTank(player);
+                        player.getInventory().addItem(OxygenTankProembryo.GetItem());
                     }
                 }
             }

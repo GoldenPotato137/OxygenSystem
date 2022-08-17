@@ -13,6 +13,8 @@ LeavingRoom: "§c§lLeaving hermetic cabin"
 AlreadySealed: "§cThis machine is already running."
 NotEnabled: "§cThis machine is not running. Use start stone to enable it"
 OxygenStation_NotInRoom: "§cIt is not in any hermetic cabin or oxygen generator is not enabled."
+CantPlace: "§cYou cant place this block"
+CantCraft: "§cYou cannot craft items using plugin items"
 
 OxygenMaskLore: "§eWith oxygen mask:§c§lT"
 MaskUpgrade_WrongTier: "§cThe currently equipped oxygen system level does not match this upgrader"

@@ -77,7 +77,8 @@ public class OxygenCalculator
 
     public static boolean SetOxygen(Player player, int delta)
     {
-        int oxygen = OxygenSystem.playerOxygen.get(player.getUniqueId());
+        int oxygen = 0;
+        if (OxygenSystem.playerOxygen != null) oxygen = OxygenSystem.playerOxygen.get(player.getUniqueId());
         oxygen += delta;
         oxygen = Math.max(oxygen, 0);
         oxygen = Math.min(oxygen, GetMaxOxygen(player));

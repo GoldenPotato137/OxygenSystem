@@ -13,6 +13,8 @@ LeavingRoom: "§c§l已离开气密室，请注意氧气消耗"
 AlreadySealed: "§c该机器已在运作"
 NotEnabled: "§c该机器尚未启动，使用启动石来启动它"
 OxygenStation_NotInRoom: "§c该机器未在气密室中，或气密室中氧气生成器尚未启动"
+CantPlace: "§c你不能放置这个方块"
+CantCraft: "§c你不能使用插件物品合成物品"
 
 OxygenMaskLore: "§e已安装氧气系统:§c§lT"
 MaskUpgrade_WrongTier: "§c当前装备的氧气系统等级与该升级器不匹配"

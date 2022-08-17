@@ -24,10 +24,8 @@ public class TickListener implements Listener
         {
             if(!Config.EnableWorlds.contains(player.getWorld().getName())) continue;
             if(player.getGameMode()!= GameMode.SURVIVAL) continue;
-
             if(!OxygenSystem.playerOxygen.containsKey(player.getUniqueId()))
-                OxygenSystem.playerOxygen.put(player.getUniqueId(), OxygenCalculator.GetMaxOxygen(player));
-
+                OxygenSystem.playerOxygen.put(player.getUniqueId(), (double) OxygenCalculator.GetMaxOxygen(player));
             if(SealedRoomCalculator.GetBelong(player.getLocation())==0)
             {
                 boolean result = OxygenCalculator.SetOxygen(player, -1);

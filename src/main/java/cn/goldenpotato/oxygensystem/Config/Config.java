@@ -26,4 +26,6 @@ public class Config
     public static boolean PlayItemUpgradeSound;
     public static boolean PlayOxygenTankUseSound;
     public static boolean PlayRefillOxygenSound;
+    public static double OxygenReducedOnDamagedOthers;
+    public static double OxygenReducedOnRunning;
 }

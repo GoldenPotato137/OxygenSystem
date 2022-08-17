@@ -21,8 +21,7 @@ public final class OxygenSystem extends JavaPlugin
 {
     public static OxygenSystem instance;
     public static SealedRoomCalculator roomCalculator;
-    public static Map<UUID,Integer> playerOxygen;
-
+    public static Map<UUID,Double> playerOxygen;
     @Override
     public void onEnable()
     {

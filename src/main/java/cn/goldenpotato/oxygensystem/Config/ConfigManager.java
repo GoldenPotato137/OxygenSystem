@@ -29,6 +29,8 @@ public class ConfigManager
         Config.OxygenTank = reader.getInt("OxygenTank",300);
         Config.RoomOxygenAdd = reader.getInt("RoomOxygenAdd",5);
         Config.OxygenStationOxygenAdd = reader.getInt("OxygenStationOxygenAdd",300);
+        Config.OxygenReducedOnDamagedOthers = reader.getDouble("OxygenReducedOnDamagedOthers", 0.5);
+        Config.OxygenReducedOnRunning = reader.getDouble("OxygenReducedOnRunning",0.2);
 
         //Sound
         Config.PlayMachineStartUpSound = reader.getBoolean("PlayMachineStartUpSound",true);

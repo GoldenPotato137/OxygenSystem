@@ -6,7 +6,9 @@ Language: en-US
 Worlds: []
 CaveNonOxygenWorlds: []
 
-CheckCaveSize: 11
+CaveCheckSize: 11
+#Y轴位移(正数向下，负数向上)
+CaveCheckYShift: 1
 #判定为洞穴时需要”洞穴方块“的比例
 CaveP: 0.5
 #Oxygen holding capacity of each grade of oxygen mask, unit: second

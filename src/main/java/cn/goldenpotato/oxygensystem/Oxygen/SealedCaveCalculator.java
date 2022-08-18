@@ -21,7 +21,7 @@ public class SealedCaveCalculator {
         int s1 = s/2;
         int s2 = (int) Math.pow(s, 3);
         for(int i = 0;i <= s2;i++) {
-            int x = i%s+cx-s1, y = i/s%s+cy-1, z =i/s/s%s+cz-s1;
+            int x = i%s+cx-s1, y = i/s%s+cy-Config.CaveCheckYShift, z =i/s/s%s+cz-s1;
             if(y > w.getMaxHeight() || y < min) continue;
             Location lo = new Location(w,x,y,z);
             Block ch = lo.getBlock();

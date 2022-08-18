@@ -33,4 +33,5 @@ public class Config
     public static double OxygenReducedOnJumping;
     public static int CheckCaveSize;
     public static double CaveP;
+    public static int CaveCheckYShift;
 }

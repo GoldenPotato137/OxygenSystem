@@ -25,7 +25,8 @@ public class ConfigManager
         //Worlds
         Config.EnableWorlds = reader.getStringList("Worlds");
         Config.EnableCaveNonOxygenWorlds = reader.getStringList("CaveNonOxygenWorlds");
-        Config.CheckCaveSize = reader.getInt("CheckCaveSize",11);
+        Config.CheckCaveSize = reader.getInt("CaveCheckSize",11);
+        Config.CaveCheckYShift = reader.getInt("CaveCheckYShift",1);
         Config.CaveP = reader.getDouble("CaveP",0.4);
         Config.CaveBlockList = reader.getStringList("CaveBlockList");
         //Oxygen

@@ -24,6 +24,7 @@ public class ConfigManager
         Util.Log("Using locale: " + Config.Language);
         //Worlds
         Config.EnableWorlds = reader.getStringList("Worlds");
+        Config.EnableCaveNonOxygenWorlds = reader.getStringList("CaveNonOxygenWorlds");
         //Oxygen
         Config.OxygenMask = reader.getIntegerList("OxygenMask");
         Config.OxygenTank = reader.getInt("OxygenTank",300);

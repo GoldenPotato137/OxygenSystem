@@ -3,6 +3,7 @@ package cn.goldenpotato.oxygensystem.Listener;
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Item.OxygenTankProembryo;
 import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
+import cn.goldenpotato.oxygensystem.Oxygen.SealedCaveCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
@@ -26,7 +27,7 @@ public class TickListener implements Listener
             if(player.getGameMode()!= GameMode.SURVIVAL) continue;
             if(!OxygenSystem.playerOxygen.containsKey(player.getUniqueId()))
                 OxygenSystem.playerOxygen.put(player.getUniqueId(), (double) OxygenCalculator.GetMaxOxygen(player));
-            if(SealedRoomCalculator.GetBelong(player.getLocation())==0)
+            if(SealedRoomCalculator.GetBelong(player.getLocation())==0 && !Config.EnableCaveNonOxygenWorlds.contains(player.getWorld().getName()))
             {
                 boolean result = OxygenCalculator.SetOxygen(player, -1);
                 if(!result)
@@ -41,10 +42,23 @@ public class TickListener implements Listener
                         player.getInventory().addItem(OxygenTankProembryo.GetItem());
                     }
                 }
-            }
-            else
-                OxygenCalculator.SetOxygen(player,Config.RoomOxygenAdd);
-
+            } else if (Config.EnableCaveNonOxygenWorlds.contains(player.getWorld().getName())) {
+                if(SealedCaveCalculator.checkIsOnCave(player.getLocation())) {
+                    boolean result = OxygenCalculator.SetOxygen(player, -1);
+                    if(!result)
+                    {
+                        ItemStack oxygenTank = OxygenCalculator.GetOxygenTank(player);
+                        if(oxygenTank==null)
+                            player.damage(2);
+                        else
+                        {
+                            oxygenTank.add(-1);
+                            OxygenCalculator.ConsumeOxygenTank(player);
+                            player.getInventory().addItem(OxygenTankProembryo.GetItem());
+                        }
+                    }
+                }
+            } else OxygenCalculator.SetOxygen(player,Config.RoomOxygenAdd);
             OxygenUtil.ShowOxygen(player);
         }
     }

@@ -6,6 +6,7 @@ public class Config
 {
     public static String Language;
     public static List<String> EnableWorlds;
+    public static List<String> EnableCaveNonOxygenWorlds;
     public static List<Integer> OxygenMask;
 
     public static boolean EnableIngredient;

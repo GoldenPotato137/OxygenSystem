@@ -163,15 +163,13 @@ public class PlayerInteractListener implements Listener
             Util.SendActionBar(event.getPlayer(), MessageManager.msg.EnteringRoom + " " + Math.abs(belongTo));
             if(Config.PlayEnterRoomSound)
                 Util.PlaySound(event.getPlayer(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT);
-        }
-        else if (belongFrom != 0 && belongTo == 0)
+        } else if (belongFrom != 0 && belongTo == 0)
         {
             Util.SendActionBar(event.getPlayer(), MessageManager.msg.LeavingRoom);
             if(Config.PlayEnterRoomSound)
                 Util.PlaySound(event.getPlayer(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT);
         }
-        if(event.getPlayer().isSprinting())
-            OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnRunning / 20);
+        if(event.getPlayer().isSprinting()) OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnRunning / 20);
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)

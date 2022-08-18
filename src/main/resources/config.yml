@@ -5,6 +5,7 @@ Language: en-US
 #Oxygen system enabled world, manual modification is not recommended
 Worlds: []
 
+CaveNonOxygenWorlds: []
 #Oxygen holding capacity of each grade of oxygen mask, unit: second
 #Of these, the first is the time without an oxygen mask
 OxygenMask: [20, 600, 1200, 1800]

@@ -12,6 +12,7 @@ import cn.goldenpotato.oxygensystem.Listener.TickListener;
 import cn.goldenpotato.oxygensystem.Metrics.Metrics;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;
@@ -23,6 +24,8 @@ public final class OxygenSystem extends JavaPlugin
     public static OxygenSystem instance;
     public static SealedRoomCalculator roomCalculator;
     public static Map<UUID,Double> playerOxygen = new java.util.HashMap<>();
+
+    public static NamespacedKey IsOnCave;
     @Override
     public void onEnable()
     {
@@ -40,7 +43,7 @@ public final class OxygenSystem extends JavaPlugin
 
         //Init
         roomCalculator = new SealedRoomCalculator();
-
+        IsOnCave = new NamespacedKey(this,"IsOnCave");
         AddRecipe();
 
         //Metrics

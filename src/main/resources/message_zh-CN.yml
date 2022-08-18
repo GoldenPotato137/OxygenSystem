@@ -70,3 +70,7 @@ SubCommand_Mask_Usage: "§a用法: /oxygen mask : 升级当前所戴帽子的氧
 SubCommand_Mask_NoHelmet: "§c你没有头盔"
 SubCommand_Mask_FullLevel: "§c当前头盔氧气系统等级已满"
 SubCommand_Remove_Usage: "§a用法: /oxygen remove : 移除当前位置的气密室"
+SubCommand_EnableCave_Usage: "§a用法: /oxygen enableCave : 启用当前世界的洞穴无氧气功能"
+SubCommand_EnableCave_AlreadyEnabled: "§c该世界已启用洞穴无氧气功能"
+SubCommand_DisableCave_Usage: "§a用法: /oxygen disableCave : 禁用当前世界的洞穴无氧气功能"
+SubCommand_DisableCave_NotEnabled: "§c该世界已禁用洞穴无氧气功能"

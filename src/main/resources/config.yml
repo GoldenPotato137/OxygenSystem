@@ -4,8 +4,11 @@ Language: en-US
 
 #Oxygen system enabled world, manual modification is not recommended
 Worlds: []
-
 CaveNonOxygenWorlds: []
+
+CheckCaveSize: 11
+#判定为洞穴时需要”洞穴方块“的比例
+CaveP: 0.5
 #Oxygen holding capacity of each grade of oxygen mask, unit: second
 #Of these, the first is the time without an oxygen mask
 OxygenMask: [20, 600, 1200, 1800]
@@ -22,6 +25,14 @@ OxygenReducedOnRunning: 0.2
 #The amount of oxygen when player jump
 OxygenReducedOnJumping: 1.0
 
+CaveBlockList: ["STONE", "GRANITE","DIORITE","ANDESITE","DIRT", "SAND","GRAVEL","COBBLESTONE","COAL_ORE","IRON_ORE","GOLD_ORE","REDSTONE_ORE","EMERALD_ORE","LAPIS_ORE","DIAMOND_ORE","NETHER_QUARTZ_ORE","SANDSTONE"]
+#AS FOR 1.16 OR HIGH YOU CAN ADD
+# - "CRIMSON_NYLIUM","WARPED_NYLIUM","NETHER_GOLD_ORE","ANCIENT_DEBRIS"
+#AS FOR 1.17 OR HIGH YOU CAN ADD
+#  - "DEEPSLATE" "COBBLED_DEEPLATE" "CALCITE" "TUFF","DIRPSTONE_BLOCK"
+#  - "ROOTED_DIRT","DEEPSLATE_COAL_ORE","DEEPSLATE_IROON_ORE","DEEPSLATE_COPPER_ORE"
+#  - "DEEPSLATE_GOLD_ORE","DEEPSLATE_REDSTONE_ORE","DEEPSLATE_EMERALD_ORE"
+#  - "LAPIS_ORE","DEEPSLATE_DIAMOND_ORE"
 #Sound
 #Whether to play the machine startup sound
 PlayMachineStartUpSound: true

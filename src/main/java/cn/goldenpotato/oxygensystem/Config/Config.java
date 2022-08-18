@@ -8,6 +8,7 @@ public class Config
     public static List<String> EnableWorlds;
     public static List<String> EnableCaveNonOxygenWorlds;
     public static List<Integer> OxygenMask;
+    public static List<String> CaveBlockList;
 
     public static boolean EnableIngredient;
     public static List<String> OxygenMaskT1Ingredient;
@@ -30,4 +31,6 @@ public class Config
     public static double OxygenReducedOnDamagedOthers;
     public static double OxygenReducedOnRunning;
     public static double OxygenReducedOnJumping;
+    public static int CheckCaveSize;
+    public static double CaveP;
 }

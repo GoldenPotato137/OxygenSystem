@@ -28,4 +28,5 @@ public class Config
     public static boolean PlayRefillOxygenSound;
     public static double OxygenReducedOnDamagedOthers;
     public static double OxygenReducedOnRunning;
+    public static double OxygenReducedOnJumping;
 }

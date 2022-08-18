@@ -18,6 +18,8 @@ OxygenStationOxygenAdd: 60
 OxygenReducedOnDamagedOthers: 0.5
 #The amount of oxygen when player running,unit: second/s
 OxygenReducedOnRunning: 0.2
+#The amount of oxygen when player jump
+OxygenReducedOnJumping: 1.0
 
 #Sound
 #Whether to play the machine startup sound

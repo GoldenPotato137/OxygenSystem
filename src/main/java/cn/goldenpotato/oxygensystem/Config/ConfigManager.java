@@ -31,6 +31,7 @@ public class ConfigManager
         Config.OxygenStationOxygenAdd = reader.getInt("OxygenStationOxygenAdd",300);
         Config.OxygenReducedOnDamagedOthers = reader.getDouble("OxygenReducedOnDamagedOthers", 0.5);
         Config.OxygenReducedOnRunning = reader.getDouble("OxygenReducedOnRunning",0.2);
+        Config.OxygenReducedOnJumping = reader.getDouble("OxygenReducedOnJumping",1.0);
 
         //Sound
         Config.PlayMachineStartUpSound = reader.getBoolean("PlayMachineStartUpSound",true);

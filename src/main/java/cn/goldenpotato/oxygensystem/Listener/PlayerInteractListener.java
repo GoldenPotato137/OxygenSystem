@@ -8,8 +8,8 @@ import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
 import cn.goldenpotato.oxygensystem.Util.Util;
+import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import org.bukkit.Sound;
-import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -170,9 +170,8 @@ public class PlayerInteractListener implements Listener
             if(Config.PlayEnterRoomSound)
                 Util.PlaySound(event.getPlayer(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT);
         }
-        if(event.getPlayer().isSprinting()) {
+        if(event.getPlayer().isSprinting())
             OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnRunning / 20);
-        }
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
@@ -236,7 +235,8 @@ public class PlayerInteractListener implements Listener
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-    public void onInventoryClick(InventoryClickEvent e) {
+    public void onInventoryClick(InventoryClickEvent e)
+    {
         if(e.getInventory().getType() == InventoryType.ANVIL) {
             if(e.getCurrentItem() != null) {
                 ItemStack item = e.getCurrentItem();
@@ -254,17 +254,24 @@ public class PlayerInteractListener implements Listener
         }
     }
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void OnPlayerDamaged(EntityDamageByEntityEvent event) {
+    public void OnPlayerDamaged(EntityDamageByEntityEvent event)
+    {
         if(event.getDamager() instanceof Player) {
             Player player = (Player) event.getDamager();
             OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
         }
     }
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void OnPlayerShootArrow(EntityShootBowEvent event) {
+    public void OnPlayerShootArrow(EntityShootBowEvent event)
+    {
         if(event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
             OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
         }
+    }
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void OnPlayerJump(PlayerJumpEvent event)
+    {
+        OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnJumping);
     }
 }

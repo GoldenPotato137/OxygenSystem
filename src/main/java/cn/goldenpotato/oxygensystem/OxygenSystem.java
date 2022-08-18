@@ -3,6 +3,7 @@ package cn.goldenpotato.oxygensystem;
 import cn.goldenpotato.oxygensystem.Command.CommandManager;
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.ConfigManager;
+import cn.goldenpotato.oxygensystem.Config.DataManager;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Item.*;
 import cn.goldenpotato.oxygensystem.Listener.BlockListener;
@@ -21,7 +22,7 @@ public final class OxygenSystem extends JavaPlugin
 {
     public static OxygenSystem instance;
     public static SealedRoomCalculator roomCalculator;
-    public static Map<UUID,Double> playerOxygen;
+    public static Map<UUID,Double> playerOxygen = new java.util.HashMap<>();
     @Override
     public void onEnable()
     {
@@ -39,7 +40,6 @@ public final class OxygenSystem extends JavaPlugin
 
         //Init
         roomCalculator = new SealedRoomCalculator();
-        playerOxygen = new java.util.HashMap<>();
 
         AddRecipe();
 
@@ -73,10 +73,12 @@ public final class OxygenSystem extends JavaPlugin
     {
         ConfigManager.LoadConfig();
         MessageManager.LoadMessage();
+        DataManager.LoadData();
     }
 
     public static void Save()
     {
         ConfigManager.Save();
+        DataManager.Save();
     }
 }

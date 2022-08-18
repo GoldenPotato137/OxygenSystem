@@ -13,7 +13,6 @@ import cn.goldenpotato.oxygensystem.Metrics.Metrics;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedCaveCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;

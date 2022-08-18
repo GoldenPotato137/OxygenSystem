@@ -4,6 +4,7 @@ import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Item.*;
 import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
+import cn.goldenpotato.oxygensystem.Oxygen.SealedCaveCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
@@ -254,22 +255,38 @@ public class PlayerInteractListener implements Listener
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnPlayerDamaged(EntityDamageByEntityEvent event)
     {
+        if(!Config.EnableWorlds.contains(event.getDamager().getWorld().getName())) return;
         if(event.getDamager() instanceof Player) {
-            Player player = (Player) event.getDamager();
-            OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
+            if(
+                    (Config.EnableCaveNonOxygenWorlds.contains(event.getDamager().getWorld().getName())&&SealedCaveCalculator.checkIsOnCave(event.getDamager().getLocation()))
+                            || (Config.EnableWorlds.contains(event.getDamager().getWorld().getName())&&!Config.EnableCaveNonOxygenWorlds.contains(event.getDamager().getWorld().getName()))
+            ) {
+                Player player = (Player) event.getDamager();
+                OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
+            }
         }
     }
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnPlayerShootArrow(EntityShootBowEvent event)
     {
         if(event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
+            if(
+                    (Config.EnableCaveNonOxygenWorlds.contains(event.getEntity().getWorld().getName())&&SealedCaveCalculator.checkIsOnCave(event.getEntity().getLocation()))
+                            || (Config.EnableWorlds.contains(event.getEntity().getWorld().getName())&&!Config.EnableCaveNonOxygenWorlds.contains(event.getEntity().getWorld().getName()))
+            ) {
+                Player player = (Player) event.getEntity();
+                OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
+            }
         }
     }
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnPlayerJump(PlayerJumpEvent event)
     {
-        OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnJumping);
+        if(
+                (Config.EnableCaveNonOxygenWorlds.contains(event.getPlayer().getWorld().getName())&&SealedCaveCalculator.checkIsOnCave(event.getPlayer().getLocation()))
+                        || (Config.EnableWorlds.contains(event.getPlayer().getWorld().getName())&&!Config.EnableCaveNonOxygenWorlds.contains(event.getPlayer().getWorld().getName()))
+        ) {
+            OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnJumping);
+        }
     }
 }

@@ -57,6 +57,8 @@ public class TickListener implements Listener
                             player.getInventory().addItem(OxygenTankProembryo.GetItem());
                         }
                     }
+                } else {
+                    OxygenCalculator.SetOxygen(player, 5);
                 }
             } else OxygenCalculator.SetOxygen(player,Config.RoomOxygenAdd);
             OxygenUtil.ShowOxygen(player);

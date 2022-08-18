@@ -64,6 +64,7 @@ public class ConfigManager
         FileConfiguration writer = OxygenSystem.instance.getConfig();
         //Worlds:
         writer.set("Worlds", Config.EnableWorlds);
+        writer.set("CaveNonOxygenWorlds", Config.EnableCaveNonOxygenWorlds);
         OxygenSystem.instance.saveConfig();
     }
 }

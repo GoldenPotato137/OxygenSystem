@@ -4,6 +4,7 @@ Language: en-US
 
 #Oxygen system enabled world, manual modification is not recommended
 Worlds: []
+CaveNonOxygenWorlds: []
 
 #Oxygen holding capacity of each grade of oxygen mask, unit: second
 #Of these, the first is the time without an oxygen mask
@@ -14,10 +15,29 @@ OxygenTank: 300
 RoomOxygenAdd: 5
 #The amount of oxygen recovered by a click of an oxygen station, unit: second
 OxygenStationOxygenAdd: 60
-#实在不会写，对其他实体造成伤害时减少的氧气量
+#The amount of oxygen consume when player hurt others, unit: second
 OxygenReducedOnDamagedOthers: 0.5
-#The amount of oxygen when player running,unit: second/s
+#The amount of oxygen consume when player running,unit: second/s
 OxygenReducedOnRunning: 0.2
+#The amount of oxygen consume when player jump, unit: second
+OxygenReducedOnJumping: 1.0
+
+#The size of cave detection area, unit: block
+#If there are many players online,consider decreasing this value
+CaveCheckSize: 11
+#Y shift when detecting cave
+CaveCheckYShift: 1
+#The proportion of "cavity blocks" needed to determine as a cave
+CaveP: 0.5
+#AS FOR 1.16 OR HIGH YOU CAN ADD
+# - "CRIMSON_NYLIUM","WARPED_NYLIUM","NETHER_GOLD_ORE","ANCIENT_DEBRIS"
+#AS FOR 1.17 OR HIGH YOU CAN ADD
+#  - "DEEPSLATE" "COBBLED_DEEPLATE" "CALCITE" "TUFF","DIRPSTONE_BLOCK"
+#  - "ROOTED_DIRT","DEEPSLATE_COAL_ORE","DEEPSLATE_IROON_ORE","DEEPSLATE_COPPER_ORE"
+#  - "DEEPSLATE_GOLD_ORE","DEEPSLATE_REDSTONE_ORE","DEEPSLATE_EMERALD_ORE"
+#  - "LAPIS_ORE","DEEPSLATE_DIAMOND_ORE"
+CaveBlockList: ["STONE", "GRANITE","DIORITE","ANDESITE","DIRT", "SAND","GRAVEL","COBBLESTONE","COAL_ORE","IRON_ORE","GOLD_ORE","REDSTONE_ORE","EMERALD_ORE","LAPIS_ORE","DIAMOND_ORE","NETHER_QUARTZ_ORE","SANDSTONE"]
+
 
 #Sound
 #Whether to play the machine startup sound

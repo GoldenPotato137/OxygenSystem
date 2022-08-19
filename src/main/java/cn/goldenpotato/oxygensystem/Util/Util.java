@@ -80,4 +80,11 @@ public class Util
     {
         return s.replace("[" + key + "]", value);
     }
+
+    public static float GetServerVersion()
+    {
+        String[] a = Bukkit.getServer().getBukkitVersion().split("-");
+        String[] ver = a[0].split("\\."); //1.x.x
+        return Float.parseFloat(ver[0]+'.'+ver[1]);
+    }
 }

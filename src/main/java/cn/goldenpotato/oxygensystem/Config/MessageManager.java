@@ -70,5 +70,11 @@ public class MessageManager
         msg.SubCommand_Mask_NoHelmet = messageReader.getString("SubCommand_Mask_NoHelmet","");
         msg.SubCommand_Mask_FullLevel = messageReader.getString("SubCommand_Mask_FullLevel","");
         msg.SubCommand_Remove_Usage = messageReader.getString("SubCommand_Remove_Usage","");
+        msg.SubCommand_EnableCave_Usage = messageReader.getString("SubCommand_EnableCave_Usage","");
+        msg.SubCommand_EnableCave_AlreadyEnabled = messageReader.getString("SubCommand_EnableCave_AlreadyEnabled","");
+        msg.SubCommand_DisableCave_Usage = messageReader.getString("SubCommand_DisableCave_Usage","");
+        msg.SubCommand_DisableCave_NotEnabled = messageReader.getString("SubCommand_DisableCave_NotEnabled","");
+        msg.SubCommand_SetWorldType_Usage = messageReader.getString("SubCommand_SetWorldType_Usage","");
+        msg.SubCommand_SetWorldType_InvalidWorldType = messageReader.getString("SubCommand_SetWorldType_InvalidWorldType","");
     }
 }

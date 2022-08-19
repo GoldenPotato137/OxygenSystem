@@ -2,10 +2,12 @@ package cn.goldenpotato.oxygensystem.Oxygen;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
+import cn.goldenpotato.oxygensystem.Config.WorldType;
 import cn.goldenpotato.oxygensystem.Item.OxygenTank;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
 import cn.goldenpotato.oxygensystem.Util.Util;
+import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -73,6 +75,25 @@ public class OxygenCalculator
     public static int GetMaxOxygen(Player player)
     {
         return Config.OxygenMask.get(Math.min(Config.OxygenMask.size()-1,GetMaskTier(player)));
+    }
+
+    /**
+     * Check whether player in this location need oxygen
+     * @param loc location
+     */
+    public static boolean NeedOxygen(Location loc)
+    {
+        if(Config.GetWorldType(loc.getWorld())== WorldType.NORMAL)
+            return false;
+        else if(SealedRoomCalculator.GetBelong(loc.getBlock())==0)
+        {
+            if(Config.GetWorldType(loc.getWorld())== WorldType.NON_OXYGEN)
+                return true;
+            else if(Config.GetWorldType(loc.getWorld())==WorldType.CAVE_NON_OXYGEN)
+                return SealedCaveCalculator.checkIsOnCave(loc);
+        }
+        //else: in room
+        return false;
     }
 
     public static boolean SetOxygen(Player player, double delta)

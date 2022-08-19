@@ -2,6 +2,7 @@ package cn.goldenpotato.oxygensystem.Listener;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
+import cn.goldenpotato.oxygensystem.Config.WorldType;
 import cn.goldenpotato.oxygensystem.Item.OxygenGenerator;
 import cn.goldenpotato.oxygensystem.Item.OxygenStation;
 import cn.goldenpotato.oxygensystem.Item.OxygenTankProembryo;
@@ -63,7 +64,6 @@ public class BlockListener implements Listener
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnBlockBuild(BlockCanBuildEvent event)
     {
-        if(!Config.EnableWorlds.contains(event.getBlock().getWorld().getName())) return;
         ItemStack toBuild = Objects.requireNonNull(event.getPlayer()).getInventory().getItemInMainHand();
 //        Util.Log(event.getBlock().getLocation().toString());
         if(toBuild.isSimilar(OxygenGenerator.GetItem()))
@@ -91,7 +91,6 @@ public class BlockListener implements Listener
     @EventHandler (ignoreCancelled = true)
     public void OnFurnaceSmelt(FurnaceSmeltEvent event)
     {
-        if(!Config.EnableWorlds.contains(event.getBlock().getWorld().getName())) return;
         if(event.getSource().isSimilar(OxygenTankProembryo.GetItem()) && SealedRoomCalculator.GetBelong(event.getBlock()) == 0)
             event.setCancelled(true);
     }

@@ -63,10 +63,43 @@ public class ConfigManager
 
     static public void Save()
     {
+        //Save all config in case of plugin update
+
         FileConfiguration writer = OxygenSystem.instance.getConfig();
         //Worlds:
         writer.set("Worlds", Config.EnableWorlds);
         writer.set("CaveNonOxygenWorlds", Config.EnableCaveNonOxygenWorlds);
+        writer.set("CaveCheckSize",Config.CheckCaveSize);
+        writer.set("CaveCheckYShift",Config.CaveCheckYShift);
+        writer.set("CaveP",Config.CaveP);
+        writer.set("CaveBlockList",Config.CaveBlockList);
+        //Oxygen
+        writer.set("OxygenMask",Config.OxygenMask);
+        writer.set("OxygenTank",Config.OxygenTank);
+        writer.set("RoomOxygenAdd",Config.RoomOxygenAdd);
+        writer.set("OxygenStationOxygenAdd",Config.OxygenStationOxygenAdd);
+        writer.set("OxygenReducedOnDamagedOthers",Config.OxygenReducedOnDamagedOthers);
+        writer.set("OxygenReducedOnRunning",Config.OxygenReducedOnRunning);
+        writer.set("OxygenReducedOnJumping",Config.OxygenReducedOnJumping);
+        //Sound
+        writer.set("PlayMachineStartUpSound",Config.PlayMachineStartUpSound);
+        writer.set("PlayEnterRoomSound",Config.PlayEnterRoomSound);
+        writer.set("PlayAirLockBreakSound",Config.PlayAirLockBreakSound);
+        writer.set("PlayItemUpgradeSound",Config.PlayItemUpgradeSound);
+        writer.set("PlayOxygenTankUseSound",Config.PlayOxygenTankUseSound);
+        writer.set("PlayRefillOxygenSound",Config.PlayRefillOxygenSound);
+        //Ingredient
+        writer.set("EnableIngredient",Config.EnableIngredient);
+        writer.set("OxygenMaskT1Ingredient",Config.OxygenMaskT1Ingredient);
+        writer.set("OxygenMaskT2Ingredient",Config.OxygenMaskT2Ingredient);
+        writer.set("OxygenMaskT3Ingredient",Config.OxygenMaskT3Ingredient);
+        writer.set("OxygenGeneratorIngredient",Config.OxygenGeneratorIngredient);
+        writer.set("OxygenStationIngredient",Config.OxygenStationIngredient);
+        writer.set("BootStoneIngredient",Config.BootStoneIngredient);
+        writer.set("OxygenTankProembryoIngredient",Config.OxygenTankProembryoIngredient);
+        //Debug
+        writer.set("Debug",Config.Debug);
+
         OxygenSystem.instance.saveConfig();
     }
 }

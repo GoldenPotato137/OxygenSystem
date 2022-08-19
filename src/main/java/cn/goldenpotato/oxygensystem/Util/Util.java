@@ -84,6 +84,7 @@ public class Util
     public static float GetServerVersion()
     {
         String[] a = Bukkit.getServer().getBukkitVersion().split("-");
-        return Float.parseFloat(a[0]);
+        String[] ver = a[0].split("\\."); //1.x.x
+        return Float.parseFloat(ver[0]+'.'+ver[1]);
     }
 }

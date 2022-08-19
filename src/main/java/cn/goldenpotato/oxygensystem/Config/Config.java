@@ -28,6 +28,12 @@ public class Config
     }
     public static void SetWorldType(World world, WorldType type)
     {
+        EnableWorlds.remove(world.getName());
+        EnableCaveNonOxygenWorlds.remove(world.getName());
+        if(type == WorldType.NON_OXYGEN)
+            EnableWorlds.add(world.getName());
+        else if(type==WorldType.CAVE_NON_OXYGEN)
+            EnableCaveNonOxygenWorlds.add(world.getName());
         worldType.put(world.getName(), type);
     }
     public static List<Integer> OxygenMask;

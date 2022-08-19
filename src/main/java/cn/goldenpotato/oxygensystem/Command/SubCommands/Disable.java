@@ -9,6 +9,10 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
+/**
+ * Deprecated.
+ * Use SetWorldType instead
+ */
 public class Disable extends SubCommand
 {
     public Disable()

@@ -74,5 +74,7 @@ public class MessageManager
         msg.SubCommand_EnableCave_AlreadyEnabled = messageReader.getString("SubCommand_EnableCave_AlreadyEnabled","");
         msg.SubCommand_DisableCave_Usage = messageReader.getString("SubCommand_DisableCave_Usage","");
         msg.SubCommand_DisableCave_NotEnabled = messageReader.getString("SubCommand_DisableCave_NotEnabled","");
+        msg.SubCommand_SetWorldType_Usage = messageReader.getString("SubCommand_SetWorldType_Usage","");
+        msg.SubCommand_SetWorldType_InvalidWorldType = messageReader.getString("SubCommand_SetWorldType_InvalidWorldType","");
     }
 }

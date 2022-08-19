@@ -60,4 +60,6 @@ public class Message
     public String SubCommand_EnableCave_AlreadyEnabled;
     public String SubCommand_DisableCave_Usage;
     public String SubCommand_DisableCave_NotEnabled;
+    public String SubCommand_SetWorldType_Usage;
+    public String SubCommand_SetWorldType_InvalidWorldType;
 }

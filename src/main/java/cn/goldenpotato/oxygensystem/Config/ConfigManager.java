@@ -23,6 +23,7 @@ public class ConfigManager
         Config.Language = reader.getString("Language", "zh-CN");
         Util.Log("Using locale: " + Config.Language);
         //Worlds
+        //For compatibility with older versions, the world type storage method remains unchanged
         Config.EnableWorlds = reader.getStringList("Worlds");
         Config.EnableCaveNonOxygenWorlds = reader.getStringList("CaveNonOxygenWorlds");
         Config.CheckCaveSize = reader.getInt("CaveCheckSize",11);

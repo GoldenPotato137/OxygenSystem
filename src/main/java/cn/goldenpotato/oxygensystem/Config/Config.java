@@ -1,12 +1,35 @@
 package cn.goldenpotato.oxygensystem.Config;
 
+import org.bukkit.World;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Config
 {
     public static String Language;
     public static List<String> EnableWorlds;
     public static List<String> EnableCaveNonOxygenWorlds;
+    private static Map<String,WorldType> worldType;
+    public static WorldType GetWorldType(World world)
+    {
+        if(worldType==null) worldType = new HashMap<>();
+        if(!worldType.containsKey(world.getName()))
+        {
+            if(EnableWorlds.contains(world.getName()))
+                worldType.put(world.getName(), WorldType.NON_OXYGEN);
+            else if(EnableCaveNonOxygenWorlds.contains(world.getName()))
+                worldType.put(world.getName(), WorldType.CAVE_NON_OXYGEN);
+            else
+                worldType.put(world.getName(), WorldType.NORMAL);
+        }
+        return worldType.get(world.getName());
+    }
+    public static void SetWorldType(World world, WorldType type)
+    {
+        worldType.put(world.getName(), type);
+    }
     public static List<Integer> OxygenMask;
     public static List<String> CaveBlockList;
 

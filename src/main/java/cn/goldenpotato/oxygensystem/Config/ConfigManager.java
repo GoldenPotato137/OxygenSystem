@@ -24,6 +24,11 @@ public class ConfigManager
         Util.Log("Using locale: " + Config.Language);
         //Worlds
         Config.EnableWorlds = reader.getStringList("Worlds");
+        Config.EnableCaveNonOxygenWorlds = reader.getStringList("CaveNonOxygenWorlds");
+        Config.CheckCaveSize = reader.getInt("CaveCheckSize",11);
+        Config.CaveCheckYShift = reader.getInt("CaveCheckYShift",1);
+        Config.CaveP = reader.getDouble("CaveP",0.4);
+        Config.CaveBlockList = reader.getStringList("CaveBlockList");
         //Oxygen
         Config.OxygenMask = reader.getIntegerList("OxygenMask");
         Config.OxygenTank = reader.getInt("OxygenTank",300);
@@ -31,6 +36,7 @@ public class ConfigManager
         Config.OxygenStationOxygenAdd = reader.getInt("OxygenStationOxygenAdd",300);
         Config.OxygenReducedOnDamagedOthers = reader.getDouble("OxygenReducedOnDamagedOthers", 0.5);
         Config.OxygenReducedOnRunning = reader.getDouble("OxygenReducedOnRunning",0.2);
+        Config.OxygenReducedOnJumping = reader.getDouble("OxygenReducedOnJumping",1.0);
 
         //Sound
         Config.PlayMachineStartUpSound = reader.getBoolean("PlayMachineStartUpSound",true);
@@ -59,6 +65,7 @@ public class ConfigManager
         FileConfiguration writer = OxygenSystem.instance.getConfig();
         //Worlds:
         writer.set("Worlds", Config.EnableWorlds);
+        writer.set("CaveNonOxygenWorlds", Config.EnableCaveNonOxygenWorlds);
         OxygenSystem.instance.saveConfig();
     }
 }

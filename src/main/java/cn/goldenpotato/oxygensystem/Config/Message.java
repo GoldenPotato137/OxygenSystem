@@ -56,4 +56,8 @@ public class Message
     public String SubCommand_Help_NoSuchCommand;
     public String CantPlace;
     public String CantCraft;
+    public String SubCommand_EnableCave_Usage;
+    public String SubCommand_EnableCave_AlreadyEnabled;
+    public String SubCommand_DisableCave_Usage;
+    public String SubCommand_DisableCave_NotEnabled;
 }

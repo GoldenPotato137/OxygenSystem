@@ -3,12 +3,14 @@ package cn.goldenpotato.oxygensystem;
 import cn.goldenpotato.oxygensystem.Command.CommandManager;
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.ConfigManager;
+import cn.goldenpotato.oxygensystem.Config.DataManager;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Item.*;
 import cn.goldenpotato.oxygensystem.Listener.BlockListener;
 import cn.goldenpotato.oxygensystem.Listener.PlayerInteractListener;
 import cn.goldenpotato.oxygensystem.Listener.TickListener;
 import cn.goldenpotato.oxygensystem.Metrics.Metrics;
+import cn.goldenpotato.oxygensystem.Oxygen.SealedCaveCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,7 +23,8 @@ public final class OxygenSystem extends JavaPlugin
 {
     public static OxygenSystem instance;
     public static SealedRoomCalculator roomCalculator;
-    public static Map<UUID,Double> playerOxygen;
+    public static Map<UUID,Double> playerOxygen = new java.util.HashMap<>();
+
     @Override
     public void onEnable()
     {
@@ -39,8 +42,6 @@ public final class OxygenSystem extends JavaPlugin
 
         //Init
         roomCalculator = new SealedRoomCalculator();
-        playerOxygen = new java.util.HashMap<>();
-
         AddRecipe();
 
         //Metrics
@@ -73,10 +74,13 @@ public final class OxygenSystem extends JavaPlugin
     {
         ConfigManager.LoadConfig();
         MessageManager.LoadMessage();
+        DataManager.LoadData();
+        SealedCaveCalculator.Init();
     }
 
     public static void Save()
     {
         ConfigManager.Save();
+        DataManager.Save();
     }
 }

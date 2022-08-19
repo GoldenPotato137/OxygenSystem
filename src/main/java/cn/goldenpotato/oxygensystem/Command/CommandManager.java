@@ -28,6 +28,8 @@ public class CommandManager implements CommandExecutor, TabCompleter
         subCommands.add(new Remove());
         subCommands.add(new Get());
         subCommands.add(new Help());
+        subCommands.add(new EnableCave());
+        subCommands.add(new DisableCave());
     }
 
     @Override

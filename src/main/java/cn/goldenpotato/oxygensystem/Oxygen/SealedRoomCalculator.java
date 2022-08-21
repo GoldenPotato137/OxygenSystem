@@ -2,6 +2,7 @@ package cn.goldenpotato.oxygensystem.Oxygen;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
+import cn.goldenpotato.oxygensystem.Util.Util;
 import com.jeff_media.customblockdata.CustomBlockData;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -128,7 +129,7 @@ public class SealedRoomCalculator
 
     public void RemoveSealedRoom(Location location)
     {
-        location = location.toBlockLocation();
+        location = Util.ToBlockLocation(location);
         Queue<Location> queue = new LinkedList<>();
         queue.add(location);
         int target = Math.abs(GetBelong(location));

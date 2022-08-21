@@ -1,15 +1,10 @@
 package cn.goldenpotato.oxygensystem.Listener;
 
-import cn.goldenpotato.oxygensystem.Config.Config;
-import cn.goldenpotato.oxygensystem.Config.MessageManager;
-import cn.goldenpotato.oxygensystem.Config.WorldType;
-import cn.goldenpotato.oxygensystem.Item.OxygenGenerator;
-import cn.goldenpotato.oxygensystem.Item.OxygenStation;
-import cn.goldenpotato.oxygensystem.Item.OxygenTankProembryo;
+import cn.goldenpotato.oxygensystem.Config.*;
+import cn.goldenpotato.oxygensystem.Item.*;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
-import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
-import cn.goldenpotato.oxygensystem.Util.Util;
+import cn.goldenpotato.oxygensystem.Util.*;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;

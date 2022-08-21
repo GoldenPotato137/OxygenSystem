@@ -1,8 +1,12 @@
 package cn.goldenpotato.oxygensystem.Util;
 
+import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -73,7 +77,10 @@ public class Util
 
     public static void SendActionBar(Player player,String s)
     {
-        player.sendActionBar(ChatColor.translateAlternateColorCodes('&', s));
+        if(Config.IsPaper)
+            player.sendActionBar(ChatColor.translateAlternateColorCodes('&', s));
+        else
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', s)));
     }
 
     public static String ReplacePlaceholders(String s, String key, String value)
@@ -86,5 +93,11 @@ public class Util
         String[] a = Bukkit.getServer().getBukkitVersion().split("-");
         String[] ver = a[0].split("\\."); //1.x.x
         return Float.parseFloat(ver[0]+'.'+ver[1]);
+    }
+
+    //Add due to compatibility with spigot
+    public static Location ToBlockLocation(Location loc)
+    {
+        return new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
     }
 }

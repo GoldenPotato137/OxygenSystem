@@ -144,7 +144,7 @@ public class OxygenCalculator
                                 player.damage(2);
                             else
                             {
-                                oxygenTank.add(-1);
+                                oxygenTank.setAmount(oxygenTank.getAmount() - 1);
                                 OxygenCalculator.ConsumeOxygenTank(player);
                                 player.getInventory().addItem(OxygenTankProembryo.GetItem());
                             }

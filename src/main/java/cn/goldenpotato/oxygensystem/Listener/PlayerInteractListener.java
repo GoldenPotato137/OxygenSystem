@@ -56,7 +56,7 @@ public class PlayerInteractListener implements Listener
             else
             {
                 OxygenCalculator.SetMaskTier(event.getPlayer().getInventory().getHelmet(), 1);
-                event.getItem().add(-1);
+                event.getItem().setAmount(event.getItem().getAmount() - 1);
                 Util.Message(event.getPlayer(), MessageManager.msg.Success);
                 if (Config.PlayItemUpgradeSound)
                     Util.PlaySound(event.getPlayer(), Sound.ENTITY_PLAYER_LEVELUP);
@@ -69,7 +69,7 @@ public class PlayerInteractListener implements Listener
             else
             {
                 OxygenCalculator.SetMaskTier(event.getPlayer().getInventory().getHelmet(), 2);
-                event.getItem().add(-1);
+                event.getItem().setAmount(event.getItem().getAmount() - 1);
                 Util.Message(event.getPlayer(), MessageManager.msg.Success);
                 if (Config.PlayItemUpgradeSound)
                     Util.PlaySound(event.getPlayer(), Sound.ENTITY_PLAYER_LEVELUP);
@@ -82,7 +82,7 @@ public class PlayerInteractListener implements Listener
             else
             {
                 OxygenCalculator.SetMaskTier(event.getPlayer().getInventory().getHelmet(), 3);
-                event.getItem().add(-1);
+                event.getItem().setAmount(event.getItem().getAmount() - 1);
                 Util.Message(event.getPlayer(), MessageManager.msg.Success);
                 if (Config.PlayItemUpgradeSound)
                     Util.PlaySound(event.getPlayer(), Sound.ENTITY_PLAYER_LEVELUP);
@@ -99,7 +99,7 @@ public class PlayerInteractListener implements Listener
                 }
                 if (OxygenSystem.roomCalculator.AddSealedRoom(Objects.requireNonNull(event.getClickedBlock()).getLocation(), 0) == 0)
                 {
-                    event.getItem().add(-1);
+                    event.getItem().setAmount(event.getItem().getAmount() - 1);
                     Util.Message(event.getPlayer(), MessageManager.msg.Success);
                     if (Config.PlayMachineStartUpSound)
                         Util.PlaySound(event.getPlayer(), Sound.BLOCK_BEACON_ACTIVATE);
@@ -116,7 +116,7 @@ public class PlayerInteractListener implements Listener
                 }
                 if (OxygenUtil.GetKey(event.getClickedBlock(), OxygenStation.oxygenStationKey) == 1)
                 {
-                    event.getItem().add(-1);
+                    event.getItem().setAmount(event.getItem().getAmount() - 1);
                     OxygenUtil.SetKey(event.getClickedBlock(), OxygenStation.oxygenStationKey, 2);
                     Util.Message(event.getPlayer(), MessageManager.msg.Success);
                     if (Config.PlayMachineStartUpSound)
@@ -157,7 +157,7 @@ public class PlayerInteractListener implements Listener
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnPlayerMove(PlayerMoveEvent event)
     {
-        if (event.getFrom().toBlockLocation() == event.getTo().toBlockLocation()) return;
+        if (Util.ToBlockLocation(event.getFrom()).equals(Util.ToBlockLocation(event.getTo()))) return;
         if (Config.GetWorldType(event.getTo().getWorld()) == WorldType.NORMAL) return;
 
         int belongFrom = SealedRoomCalculator.GetBelong(event.getFrom());
@@ -287,12 +287,5 @@ public class PlayerInteractListener implements Listener
             Player player = (Player) event.getEntity();
             OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
         }
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void OnPlayerJump(PlayerJumpEvent event)
-    {
-        if(OxygenCalculator.NeedOxygen(event.getFrom()))
-            OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnJumping);
     }
 }

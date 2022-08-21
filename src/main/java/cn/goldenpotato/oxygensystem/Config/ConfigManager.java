@@ -11,6 +11,7 @@ public class ConfigManager
     static void Init()
     {
         OxygenSystem.instance.saveDefaultConfig();
+        Config.GetServerType();
         init = true;
     }
 

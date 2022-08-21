@@ -4,17 +4,18 @@ import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Config.WorldType;
 import cn.goldenpotato.oxygensystem.Item.OxygenTank;
+import cn.goldenpotato.oxygensystem.Item.OxygenTankProembryo;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
 import cn.goldenpotato.oxygensystem.Util.Util;
-import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,5 +114,54 @@ public class OxygenCalculator
         OxygenUtil.ShowOxygen(player);
         if(Config.PlayOxygenTankUseSound)
             Util.PlaySound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+    }
+
+    private static BukkitTask task;
+    public static void StartCalculate()
+    {
+        if(task!=null) return;
+        task =  new BukkitRunnable()
+        {
+            @Override
+            public void run()
+            {
+                for (Player player : Bukkit.getOnlinePlayers())
+                {
+                    if(Config.GetWorldType(player.getWorld())== WorldType.NORMAL) continue;
+                    if(player.getGameMode()!= GameMode.SURVIVAL) continue;
+
+                    if(!OxygenSystem.playerOxygen.containsKey(player.getUniqueId()))
+                        OxygenSystem.playerOxygen.put(player.getUniqueId(), (double) OxygenCalculator.GetMaxOxygen(player));
+
+                    boolean needOxygen = OxygenCalculator.NeedOxygen(player.getLocation());
+                    if(needOxygen)
+                    {
+                        boolean result = OxygenCalculator.SetOxygen(player, -1);
+                        if (!result)
+                        {
+                            ItemStack oxygenTank = OxygenCalculator.GetOxygenTank(player);
+                            if (oxygenTank == null)
+                                player.damage(2);
+                            else
+                            {
+                                oxygenTank.setAmount(oxygenTank.getAmount() - 1);
+                                OxygenCalculator.ConsumeOxygenTank(player);
+                                player.getInventory().addItem(OxygenTankProembryo.GetItem());
+                            }
+                        }
+                    }
+                    else
+                        OxygenCalculator.SetOxygen(player,Config.RoomOxygenAdd);
+                    OxygenUtil.ShowOxygen(player);
+                }
+            }
+        }.runTaskTimer(OxygenSystem.instance, 10, 20);
+    }
+
+    public static void StopCalculate()
+    {
+        if(task==null || task.isCancelled()) return;
+        task.cancel();
+        task = null;
     }
 }

@@ -288,11 +288,4 @@ public class PlayerInteractListener implements Listener
             OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
         }
     }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void OnPlayerJump(PlayerJumpEvent event)
-    {
-        if(OxygenCalculator.NeedOxygen(event.getFrom()))
-            OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnJumping);
-    }
 }

@@ -1,15 +1,13 @@
 package cn.goldenpotato.oxygensystem;
 
 import cn.goldenpotato.oxygensystem.Command.CommandManager;
-import cn.goldenpotato.oxygensystem.Config.Config;
-import cn.goldenpotato.oxygensystem.Config.ConfigManager;
-import cn.goldenpotato.oxygensystem.Config.DataManager;
-import cn.goldenpotato.oxygensystem.Config.MessageManager;
+import cn.goldenpotato.oxygensystem.Config.*;
 import cn.goldenpotato.oxygensystem.Item.*;
 import cn.goldenpotato.oxygensystem.Listener.BlockListener;
 import cn.goldenpotato.oxygensystem.Listener.PlayerInteractListener;
-import cn.goldenpotato.oxygensystem.Listener.TickListener;
+import cn.goldenpotato.oxygensystem.Listener.PlayerJumpListener;
 import cn.goldenpotato.oxygensystem.Metrics.Metrics;
+import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedCaveCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import org.bukkit.Bukkit;
@@ -38,11 +36,13 @@ public final class OxygenSystem extends JavaPlugin
         //register events
         Bukkit.getPluginManager().registerEvents(new BlockListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
-        Bukkit.getPluginManager().registerEvents(new TickListener(),this);
+        if(Config.IsPaper)
+            Bukkit.getPluginManager().registerEvents(new PlayerJumpListener(),this);
 
         //Init
         roomCalculator = new SealedRoomCalculator();
         AddRecipe();
+        OxygenCalculator.StartCalculate();
 
         //Metrics
         int pluginId = 16115;
@@ -66,6 +66,7 @@ public final class OxygenSystem extends JavaPlugin
     @Override
     public void onDisable()
     {
+        OxygenCalculator.StopCalculate();
         Save();
         Bukkit.resetRecipes();
     }

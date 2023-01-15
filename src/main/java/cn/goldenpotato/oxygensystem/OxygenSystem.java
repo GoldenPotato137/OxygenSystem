@@ -41,6 +41,7 @@ public final class OxygenSystem extends JavaPlugin
 
         //Init
         roomCalculator = new SealedRoomCalculator();
+        SealedCaveCalculator.Init();
         AddRecipe();
         OxygenCalculator.StartCalculate();
 
@@ -76,7 +77,6 @@ public final class OxygenSystem extends JavaPlugin
         ConfigManager.LoadConfig();
         MessageManager.LoadMessage();
         DataManager.LoadData();
-        SealedCaveCalculator.Init();
     }
 
     public static void Save()

@@ -1,5 +1,7 @@
 #简体中文：zh-CN
+#完成语言设置后请手动删除插件目录下的locale.yml,并重载(/oxygen reload)
 #English: en-US
+#After setting the language, you need to delete locale.yml in the plugin folder manually, and reload (/oxygen reload)
 Language: en-US
 
 #Oxygen system enabled world, manual modification is not recommended

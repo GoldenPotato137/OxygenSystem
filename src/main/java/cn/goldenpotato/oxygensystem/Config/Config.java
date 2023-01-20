@@ -10,6 +10,8 @@ public class Config
 {
     public static String Language;
     public static boolean IsPaper = false;
+    public static boolean OxygenBar;
+    public static boolean RoomMessage;
 
     public static void GetServerType()
     {

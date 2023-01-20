@@ -157,6 +157,7 @@ public class MessageManager
         msg.SubCommand_Mask_Usage = GetString("SubCommand_Mask_Usage");
         msg.SubCommand_Mask_NoHelmet = GetString("SubCommand_Mask_NoHelmet");
         msg.SubCommand_Mask_FullLevel = GetString("SubCommand_Mask_FullLevel");
+        msg.SubCommand_Reload_Usage = GetString("SubCommand_Reload_Usage");
         msg.SubCommand_Remove_Usage = GetString("SubCommand_Remove_Usage");
         msg.SubCommand_EnableCave_Usage = GetString("SubCommand_EnableCave_Usage");
         msg.SubCommand_EnableCave_AlreadyEnabled = GetString("SubCommand_EnableCave_AlreadyEnabled");

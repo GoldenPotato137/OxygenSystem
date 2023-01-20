@@ -21,9 +21,16 @@ OxygenStationOxygenAdd: 60
 OxygenReducedOnDamagedOthers: 0.5
 #The amount of oxygen consume when player running,unit: second/s
 OxygenReducedOnRunning: 0.2
-#The amount of oxygen consume when player jump, unit: second
+#The amount of oxygen consume when player jump, unit: second [Only available in paper]
 OxygenReducedOnJumping: 1.0
 
+#Display
+#Whether to display the oxygen bar
+OxygenBar: true
+#Whether to display the room id when going into/out of hermetic cabin
+RoomMessage: true
+
+#Cave
 #The size of cave detection area, unit: block
 #If there are many players online,consider decreasing this value
 CaveCheckSize: 11
@@ -55,6 +62,8 @@ PlayOxygenTankUseSound: true
 #Whether to play a sound when infusing oxygen at the oxygen station
 PlayRefillOxygenSound: true
 
+#Ingredient
+#Note: The changes here will ONLY take effect after restarting the server, not after /oxygen reload.
 #Whether to enable the built-in synthesis table of this plugin
 #If you need a higher degree of customization, consider using the other Table plugin, use /oxygen get to get all items
 EnableIngredient: true

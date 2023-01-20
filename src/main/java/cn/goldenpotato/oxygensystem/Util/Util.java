@@ -80,12 +80,8 @@ public class Util
         if(Config.IsPaper)
             player.sendActionBar(ChatColor.translateAlternateColorCodes('&', s));
         else
+            //noinspection deprecation
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', s)));
-    }
-
-    public static String ReplacePlaceholders(String s, String key, String value)
-    {
-        return s.replace("[" + key + "]", value);
     }
 
     public static float GetServerVersion()

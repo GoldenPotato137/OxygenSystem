@@ -9,7 +9,6 @@ import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
 import cn.goldenpotato.oxygensystem.Util.Util;
-import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -164,13 +163,15 @@ public class PlayerInteractListener implements Listener
         int belongTo = SealedRoomCalculator.GetBelong(event.getTo());
         if (Math.abs(belongFrom) != Math.abs(belongTo) && belongTo != 0)
         {
-            Util.SendActionBar(event.getPlayer(), MessageManager.msg.EnteringRoom + " " + Math.abs(belongTo));
+            if(Config.RoomMessage)
+                Util.SendActionBar(event.getPlayer(), MessageManager.msg.EnteringRoom + " " + Math.abs(belongTo));
             if (Config.PlayEnterRoomSound)
                 Util.PlaySound(event.getPlayer(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT);
         }
         else if (belongFrom != 0 && belongTo == 0)
         {
-            Util.SendActionBar(event.getPlayer(), MessageManager.msg.LeavingRoom);
+            if(Config.RoomMessage)
+                Util.SendActionBar(event.getPlayer(), MessageManager.msg.LeavingRoom);
             if (Config.PlayEnterRoomSound)
                 Util.PlaySound(event.getPlayer(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT);
         }

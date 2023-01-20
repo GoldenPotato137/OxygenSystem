@@ -1,5 +1,6 @@
 package cn.goldenpotato.oxygensystem.Util;
 
+import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Item.*;
 import cn.goldenpotato.oxygensystem.Oxygen.*;
@@ -15,6 +16,8 @@ public class OxygenUtil
 {
     public static void ShowOxygen(Player player)
     {
+        if(!Config.OxygenBar) return;
+
         float per = (float) (OxygenSystem.playerOxygen.get(player.getUniqueId()) / OxygenCalculator.GetMaxOxygen(player));
         int cnt = Math.round(per * 20);
         if(cnt==20 && !OxygenCalculator.NeedOxygen(player.getLocation())) return;

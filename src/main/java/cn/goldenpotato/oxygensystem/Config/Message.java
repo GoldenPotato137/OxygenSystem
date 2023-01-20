@@ -62,4 +62,5 @@ public class Message
     public String SubCommand_DisableCave_NotEnabled;
     public String SubCommand_SetWorldType_Usage;
     public String SubCommand_SetWorldType_InvalidWorldType;
+    public String SubCommand_Reload_Usage;
 }

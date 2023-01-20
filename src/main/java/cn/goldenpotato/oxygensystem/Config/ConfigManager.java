@@ -40,6 +40,10 @@ public class ConfigManager
         Config.OxygenReducedOnRunning = reader.getDouble("OxygenReducedOnRunning",0.2);
         Config.OxygenReducedOnJumping = reader.getDouble("OxygenReducedOnJumping",1.0);
 
+        //Display
+        Config.OxygenBar = reader.getBoolean("OxygenBar",true);
+        Config.RoomMessage = reader.getBoolean("RoomMessage",true);
+
         //Sound
         Config.PlayMachineStartUpSound = reader.getBoolean("PlayMachineStartUpSound",true);
         Config.PlayEnterRoomSound = reader.getBoolean("PlayEnterRoomSound",true);
@@ -82,6 +86,9 @@ public class ConfigManager
         writer.set("OxygenReducedOnDamagedOthers",Config.OxygenReducedOnDamagedOthers);
         writer.set("OxygenReducedOnRunning",Config.OxygenReducedOnRunning);
         writer.set("OxygenReducedOnJumping",Config.OxygenReducedOnJumping);
+        //Display
+        writer.set("OxygenBar",Config.OxygenBar);
+        writer.set("RoomMessage",Config.RoomMessage);
         //Sound
         writer.set("PlayMachineStartUpSound",Config.PlayMachineStartUpSound);
         writer.set("PlayEnterRoomSound",Config.PlayEnterRoomSound);

@@ -27,6 +27,7 @@ public class CommandManager implements CommandExecutor, TabCompleter
         subCommands.add(new Get());
         subCommands.add(new Help());
         subCommands.add(new Mask());
+        subCommands.add(new Reload());
         subCommands.add(new Remove());
         subCommands.add(new SetWorldType());
     }

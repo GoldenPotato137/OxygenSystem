@@ -2,6 +2,8 @@ name: OxygenSystem
 version: '${project.version}'
 main: cn.goldenpotato.oxygensystem.OxygenSystem
 api-version: 1.14
+softdepend:
+  - PlaceholderAPI
 commands:
   oxygen:
     description: "OxygenSystem"

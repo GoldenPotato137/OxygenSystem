@@ -16,9 +16,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class OxygenCalculator
 {
@@ -95,6 +97,29 @@ public class OxygenCalculator
         }
         //else: in room
         return false;
+    }
+
+    /**
+     * Get the room player in
+     * @param player player
+     * @return room id (0 if not in room, minus if in room's wall)
+     */
+    public static int GetRoom(@NotNull Player player)
+    {
+        return SealedRoomCalculator.GetBelong(player.getLocation().getBlock());
+    }
+
+    /**
+     * Get player's oxygen
+     * @param player player
+     * @return oxygen, 0 if player's oxygen not found
+     */
+    public static double GetOxygen(@NotNull Player player)
+    {
+        UUID uuid = player.getUniqueId();
+        if(OxygenSystem.playerOxygen.containsKey(uuid))
+            return OxygenSystem.playerOxygen.get(uuid);
+        return 0;
     }
 
     public static boolean SetOxygen(Player player, double delta)

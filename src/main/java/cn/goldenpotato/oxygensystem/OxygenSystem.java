@@ -10,6 +10,7 @@ import cn.goldenpotato.oxygensystem.Metrics.Metrics;
 import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedCaveCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
+import cn.goldenpotato.oxygensystem.Placeholder.PapiManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -44,6 +45,10 @@ public final class OxygenSystem extends JavaPlugin
         SealedCaveCalculator.Init();
         AddRecipe();
         OxygenCalculator.StartCalculate();
+
+        //Placeholder
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI")!=null)
+            new PapiManager().register();
 
         //Metrics
         int pluginId = 16115;

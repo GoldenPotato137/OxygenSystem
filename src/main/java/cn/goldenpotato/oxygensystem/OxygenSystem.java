@@ -7,6 +7,7 @@ import cn.goldenpotato.oxygensystem.Config.DataManager;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Item.*;
 import cn.goldenpotato.oxygensystem.Listener.BlockListener;
+import cn.goldenpotato.oxygensystem.Listener.ItemsAdderListener;
 import cn.goldenpotato.oxygensystem.Listener.PlayerInteractListener;
 import cn.goldenpotato.oxygensystem.Listener.PlayerJumpListener;
 import cn.goldenpotato.oxygensystem.Metrics.Metrics;
@@ -39,6 +40,8 @@ public final class OxygenSystem extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
         if(Config.IsPaper)
             Bukkit.getPluginManager().registerEvents(new PlayerJumpListener(),this);
+        if(Config.ItemsAdder)
+            Bukkit.getPluginManager().registerEvents(new ItemsAdderListener(),this);
 
         //Init
         roomCalculator = new SealedRoomCalculator();

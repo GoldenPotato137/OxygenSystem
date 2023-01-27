@@ -72,9 +72,14 @@
             <url>https://hub.jeff-media.com/nexus/repository/jeff-media-public/</url>
         </repository>
         <repository>
+            <id>jitpack-repo</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
+
     </repositories>
 
     <dependencies>
@@ -89,6 +94,13 @@
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
             <version>2.11.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--ItemsAdder-->
+        <dependency>
+            <groupId>com.github.LoneDev6</groupId>
+            <artifactId>api-itemsadder</artifactId>
+            <version>2.4.21</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

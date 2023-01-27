@@ -89,8 +89,9 @@ OxygenTankProembryoIngredient: ['AIR','IRON_INGOT','AIR','IRON_INGOT','SLIME_BAL
 #ItemsAdder support
 #If you would like to customize HUD, SET OxygenBar and RoomMessage to false
 IA:
-  PlayerStat: #Whether to update those player stats
-    oxygenSystem_oxygen: true
+  Hud:
+    OxygenHudType1: false
+    OxygenHudType2: false
 
 #Debug mode
 #In Debug mode, when creating a new airlock or destroying an airlock,

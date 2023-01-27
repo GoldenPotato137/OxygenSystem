@@ -24,12 +24,13 @@ public class Config
         }
     }
 
-    public static boolean ItemsAdder = false;
+    public static boolean ItemsAdder = false; //Whether ItemsAdder is installed
     public static void CheckItemsAdder()
     {
         if(Bukkit.getPluginManager().getPlugin("ItemsAdder")!=null)
             ItemsAdder = true;
     }
+    public static boolean ItemsAdderLoaded = false; //Whether ItemsAdder has loaded all resources
 
     public static List<String> EnableWorlds;
     public static List<String> EnableCaveNonOxygenWorlds;
@@ -90,5 +91,6 @@ public class Config
     public static int CaveCheckYShift;
     public static boolean OxygenBar;
     public static boolean RoomMessage;
-    public static boolean IA_PlayerStats_Oxygen;
+    public static boolean IA_Hud_OxygenHudType1;
+    public static boolean IA_Hud_OxygenHudType2;
 }

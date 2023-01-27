@@ -48,6 +48,15 @@ public class Util
         OxygenSystem.instance.getLogger().info(ChatColor.translateAlternateColorCodes('&', s));
     }
 
+    /**
+     * Send a warning message to the console
+     * @param s The message
+     */
+    public static void Warning(String s)
+    {
+        OxygenSystem.instance.getLogger().warning(ChatColor.translateAlternateColorCodes('&', s));
+    }
+
     static ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
     public static void Command(String command, List<UUID> players)

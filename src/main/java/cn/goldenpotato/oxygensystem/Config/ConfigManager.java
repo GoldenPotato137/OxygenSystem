@@ -64,10 +64,24 @@ public class ConfigManager
         Config.OxygenTankProembryoIngredient = reader.getStringList("OxygenTankProembryoIngredient");
 
         //ItemsAdder
-        Config.IA_PlayerStats_Oxygen = reader.getBoolean("IA.PlayerStat.oxygen",true);
+        Config.IA_Hud_OxygenHudType1 = reader.getBoolean("IA.Hud.OxygenHudType1",false);
+        Config.IA_Hud_OxygenHudType2 = reader.getBoolean("IA.Hud.OxygenHudType2",false);
 
         //Debug
         Config.Debug = reader.getBoolean("Debug", false);
+
+
+        //Check Config
+        if(!Config.ItemsAdder)
+        {
+            if(Config.IA_Hud_OxygenHudType1 || Config.IA_Hud_OxygenHudType2)
+                Util.Warning("ItemsAdder is not installed, but the configuration file is set to use ItemsAdder. Please check the configuration file.");
+        }
+        if(Config.IA_Hud_OxygenHudType1 || Config.IA_Hud_OxygenHudType2)
+        {
+            if(Config.RoomMessage || Config.OxygenBar)
+                Util.Warning("You have enabled IA-Hud, but built-in HUD is still enabled. Please check the configuration file.");
+        }
     }
 
     static public void Save()
@@ -110,7 +124,8 @@ public class ConfigManager
         writer.set("BootStoneIngredient",Config.BootStoneIngredient);
         writer.set("OxygenTankProembryoIngredient",Config.OxygenTankProembryoIngredient);
         //ItemsAdder
-        writer.set("IA.PlayerStat.oxygen",Config.IA_PlayerStats_Oxygen);
+        writer.set("IA.Hud.OxygenHudType1",Config.IA_Hud_OxygenHudType1);
+        writer.set("IA.Hud.OxygenHudType2",Config.IA_Hud_OxygenHudType2);
         //Debug
         writer.set("Debug",Config.Debug);
 

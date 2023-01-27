@@ -116,7 +116,7 @@ public class PlayerManager
     public static PlayerData GetPlayerData(@NotNull Player player)
     {
         if(!playerData.containsKey(player.getUniqueId()))
-            playerData.put(player.getUniqueId(), new PlayerData(GetMaxOxygen(player)));
+            playerData.put(player.getUniqueId(), new PlayerData(GetMaxOxygen(player), player));
         return playerData.get(player.getUniqueId());
     }
 
@@ -203,10 +203,14 @@ public class PlayerManager
                         PlayerManager.AddOxygen(player,Config.RoomOxygenAdd);
 
                     OxygenUtil.ShowOxygen(player);
-                    if(Config.ItemsAdder) //Update IA player stats
+                    if(Config.ItemsAdder)
                     {
-                        if(Config.IA_PlayerStats_Oxygen)
-                            Util.Command(String.format("iaplayerstat write %s oxygenSystem_oxygen float %.1f", player.getName(), GetOxygenPercent(player)/10));
+                        PlayerData data = GetPlayerData(player);
+                        if(Config.IA_Hud_OxygenHudType1 && data.oxygenHudType1.exists())
+                            data.oxygenHudType1.setFloatValue((float) GetOxygenPercent(player) / 10);
+                        if(Config.IA_Hud_OxygenHudType2 && data.oxygenHudType2.exists())
+                            data.oxygenHudType2.setFloatValue((float) GetOxygenPercent(player) / 100 * 25);
+                        data.hudHolder.sendUpdate();
                     }
                 }
             }

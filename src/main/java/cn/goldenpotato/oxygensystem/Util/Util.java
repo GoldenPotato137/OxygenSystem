@@ -68,6 +68,15 @@ public class Util
             Bukkit.dispatchCommand(console, command);
     }
 
+    /**
+     * Execute a command as console
+     * @param command Command to execute
+     */
+    public static void Command(String command)
+    {
+        Bukkit.dispatchCommand(console, command);
+    }
+
     public static String TickToTime(long tick)
     {
         long hour = (tick / 1000 + 7) % 24;

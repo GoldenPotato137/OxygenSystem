@@ -12,6 +12,7 @@ public class ConfigManager
     {
         OxygenSystem.instance.saveDefaultConfig();
         Config.GetServerType();
+        Config.CheckItemsAdder();
         init = true;
     }
 
@@ -62,6 +63,9 @@ public class ConfigManager
         Config.BootStoneIngredient = reader.getStringList("BootStoneIngredient");
         Config.OxygenTankProembryoIngredient = reader.getStringList("OxygenTankProembryoIngredient");
 
+        //ItemsAdder
+        Config.IA_PlayerStats_Oxygen = reader.getBoolean("IA.PlayerStat.oxygen",true);
+
         //Debug
         Config.Debug = reader.getBoolean("Debug", false);
     }
@@ -105,6 +109,8 @@ public class ConfigManager
         writer.set("OxygenStationIngredient",Config.OxygenStationIngredient);
         writer.set("BootStoneIngredient",Config.BootStoneIngredient);
         writer.set("OxygenTankProembryoIngredient",Config.OxygenTankProembryoIngredient);
+        //ItemsAdder
+        writer.set("IA.PlayerStat.oxygen",Config.IA_PlayerStats_Oxygen);
         //Debug
         writer.set("Debug",Config.Debug);
 

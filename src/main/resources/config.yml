@@ -86,6 +86,11 @@ BootStoneIngredient: ['AIR','AIR','AIR','AIR','FLINT_AND_STEEL','IRON_INGOT','AI
 #Oxygen Tank (Empty)
 OxygenTankProembryoIngredient: ['AIR','IRON_INGOT','AIR','IRON_INGOT','SLIME_BALL','IRON_INGOT','AIR','IRON_INGOT','AIR']
 
+#ItemsAdder support
+#If you would like to customize HUD, SET OxygenBar and RoomMessage to false
+IA:
+  PlayerStat: #Whether to update those player stats
+    oxygenSystem_oxygen: true
 
 #Debug mode
 #In Debug mode, when creating a new airlock or destroying an airlock,

@@ -18,12 +18,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
-public class OxygenCalculator
+public class PlayerManager
 {
+    public static final Map<UUID, PlayerData> playerData = new HashMap<>();
     public static NamespacedKey maskTierKey = new NamespacedKey(OxygenSystem.instance, "mask-tier");
 
     public static int SetMaskTier(ItemStack itemStack,int tier)
@@ -110,32 +109,60 @@ public class OxygenCalculator
     }
 
     /**
+     * Get player's data
+     * @param player player
+     * @return player's data, if player's data not exist, create a new one (with full oxygen)
+     */
+    public static PlayerData GetPlayerData(@NotNull Player player)
+    {
+        if(!playerData.containsKey(player.getUniqueId()))
+            playerData.put(player.getUniqueId(), new PlayerData(GetMaxOxygen(player)));
+        return playerData.get(player.getUniqueId());
+    }
+
+    /**
      * Get player's oxygen
      * @param player player
      * @return oxygen, 0 if player's oxygen not found
      */
     public static double GetOxygen(@NotNull Player player)
     {
-        UUID uuid = player.getUniqueId();
-        if(OxygenSystem.playerOxygen.containsKey(uuid))
-            return OxygenSystem.playerOxygen.get(uuid);
-        return 0;
+        return GetPlayerData(player).oxygen;
     }
 
-    public static boolean SetOxygen(Player player, double delta)
+    /**
+     * Get player's oxygen percentage
+     * @param player player
+     * @return oxygen percentage (0-100), 0 if player's oxygen not found
+     */
+    public static double GetOxygenPercent(@NotNull Player player)
     {
-        double oxygen = 0;
-        if (OxygenSystem.playerOxygen != null) try{oxygen = OxygenSystem.playerOxygen.get(player.getUniqueId());} catch (NullPointerException ignored){}
+        if(GetOxygen(player)==0) return 0;
+        return GetOxygen(player)/GetMaxOxygen(player)*100.0;
+    }
+
+    /**
+     * Add player's oxygen
+     * @param player player
+     * @param delta oxygen increase, negative if decrease
+     * @return whether oxygen after set is grater than 0
+     */
+    public static boolean AddOxygen(Player player, double delta)
+    {
+        PlayerData data = GetPlayerData(player);
+        double oxygen = data.oxygen;
         oxygen += delta;
         oxygen = Math.max(oxygen, 0);
         oxygen = Math.min(oxygen, GetMaxOxygen(player));
-        OxygenSystem.playerOxygen.put(player.getUniqueId(), oxygen);
+        data.oxygen = oxygen;
         return oxygen>0;
     }
 
+
+
     public static void ConsumeOxygenTank(Player player)
     {
-        SetOxygen(player, Config.OxygenTank);
+        AddOxygen(player, Config.OxygenTank);
         OxygenUtil.ShowOxygen(player);
         if(Config.PlayOxygenTankUseSound)
             Util.PlaySound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
@@ -155,29 +182,32 @@ public class OxygenCalculator
                     if(Config.GetWorldType(player.getWorld())== WorldType.NORMAL) continue;
                     if(player.getGameMode()!= GameMode.SURVIVAL) continue;
 
-                    if(!OxygenSystem.playerOxygen.containsKey(player.getUniqueId()))
-                        OxygenSystem.playerOxygen.put(player.getUniqueId(), (double) OxygenCalculator.GetMaxOxygen(player));
-
-                    boolean needOxygen = OxygenCalculator.NeedOxygen(player.getLocation());
+                    boolean needOxygen = PlayerManager.NeedOxygen(player.getLocation());
                     if(needOxygen)
                     {
-                        boolean result = OxygenCalculator.SetOxygen(player, -1);
+                        boolean result = PlayerManager.AddOxygen(player, -1);
                         if (!result)
                         {
-                            ItemStack oxygenTank = OxygenCalculator.GetOxygenTank(player);
+                            ItemStack oxygenTank = PlayerManager.GetOxygenTank(player);
                             if (oxygenTank == null)
                                 player.damage(2);
                             else
                             {
                                 oxygenTank.setAmount(oxygenTank.getAmount() - 1);
-                                OxygenCalculator.ConsumeOxygenTank(player);
+                                PlayerManager.ConsumeOxygenTank(player);
                                 player.getInventory().addItem(OxygenTankProembryo.GetItem());
                             }
                         }
                     }
                     else
-                        OxygenCalculator.SetOxygen(player,Config.RoomOxygenAdd);
+                        PlayerManager.AddOxygen(player,Config.RoomOxygenAdd);
+
                     OxygenUtil.ShowOxygen(player);
+                    if(Config.ItemsAdder) //Update IA player stats
+                    {
+                        if(Config.IA_PlayerStats_Oxygen)
+                            Util.Command(String.format("iaplayerstat write %s oxygenSystem_oxygen float %.1f", player.getName(), GetOxygenPercent(player)/10));
+                    }
                 }
             }
         }.runTaskTimer(OxygenSystem.instance, 10, 20);

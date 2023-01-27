@@ -1,28 +1,28 @@
 package cn.goldenpotato.oxygensystem;
 
 import cn.goldenpotato.oxygensystem.Command.CommandManager;
-import cn.goldenpotato.oxygensystem.Config.*;
+import cn.goldenpotato.oxygensystem.Config.Config;
+import cn.goldenpotato.oxygensystem.Config.ConfigManager;
+import cn.goldenpotato.oxygensystem.Config.DataManager;
+import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Item.*;
 import cn.goldenpotato.oxygensystem.Listener.BlockListener;
 import cn.goldenpotato.oxygensystem.Listener.PlayerInteractListener;
 import cn.goldenpotato.oxygensystem.Listener.PlayerJumpListener;
 import cn.goldenpotato.oxygensystem.Metrics.Metrics;
-import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
+import cn.goldenpotato.oxygensystem.Oxygen.PlayerManager;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedCaveCalculator;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.Placeholder.PapiManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 public final class OxygenSystem extends JavaPlugin
 {
     public static OxygenSystem instance;
     public static SealedRoomCalculator roomCalculator;
-    public static Map<UUID,Double> playerOxygen = new java.util.HashMap<>();
 
     @Override
     public void onEnable()
@@ -44,7 +44,7 @@ public final class OxygenSystem extends JavaPlugin
         roomCalculator = new SealedRoomCalculator();
         SealedCaveCalculator.Init();
         AddRecipe();
-        OxygenCalculator.StartCalculate();
+        PlayerManager.StartCalculate();
 
         //Placeholder
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI")!=null)
@@ -72,7 +72,7 @@ public final class OxygenSystem extends JavaPlugin
     @Override
     public void onDisable()
     {
-        OxygenCalculator.StopCalculate();
+        PlayerManager.StopCalculate();
         Save();
         Bukkit.resetRecipes();
     }

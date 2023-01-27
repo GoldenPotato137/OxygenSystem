@@ -1,7 +1,11 @@
 package cn.goldenpotato.oxygensystem.Config;
 
+import cn.goldenpotato.oxygensystem.Oxygen.PlayerData;
+import cn.goldenpotato.oxygensystem.Oxygen.PlayerManager;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import com.google.gson.*;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -16,7 +20,9 @@ public class DataManager {
             JsonArray arr = LoadJson("player.json");
             for (JsonElement object : arr) {
                 JsonObject json = object.getAsJsonObject();
-                OxygenSystem.playerOxygen.put(UUID.fromString(json.get("uuid").getAsString()), json.get("oxygen").getAsDouble());
+                Player player = Bukkit.getPlayer(UUID.fromString(json.get("uuid").getAsString()));
+                if(player!=null)
+                    PlayerManager.GetPlayerData(player).oxygen = json.get("oxygen").getAsDouble();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -25,10 +31,11 @@ public class DataManager {
     }
     public static void Save() {
         JsonArray array = new JsonArray();
-        for(UUID uuid : OxygenSystem.playerOxygen.keySet()) {
+        for(UUID uuid : PlayerManager.playerData.keySet()) {
             JsonObject jo = new JsonObject();
             jo.addProperty("uuid", uuid.toString());
-            jo.addProperty("oxygen",OxygenSystem.playerOxygen.get(uuid));
+            PlayerData data = PlayerManager.playerData.get(uuid);
+            jo.addProperty("oxygen",data.oxygen);
             array.add(jo);
         }
         try {

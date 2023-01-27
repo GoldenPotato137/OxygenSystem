@@ -18,9 +18,9 @@ public class OxygenUtil
     {
         if(!Config.OxygenBar) return;
 
-        float per = (float) (OxygenSystem.playerOxygen.get(player.getUniqueId()) / OxygenCalculator.GetMaxOxygen(player));
+        float per = (float) (PlayerManager.GetOxygen(player) / PlayerManager.GetMaxOxygen(player));
         int cnt = Math.round(per * 20);
-        if(cnt==20 && !OxygenCalculator.NeedOxygen(player.getLocation())) return;
+        if(cnt==20 && !PlayerManager.NeedOxygen(player.getLocation())) return;
 
         StringBuilder result = new StringBuilder(MessageManager.msg.Oxygen);
         for(int i=1;i<=cnt;i++)

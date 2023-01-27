@@ -4,7 +4,7 @@ import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Config.WorldType;
 import cn.goldenpotato.oxygensystem.Item.*;
-import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
+import cn.goldenpotato.oxygensystem.Oxygen.PlayerManager;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
@@ -50,11 +50,11 @@ public class PlayerInteractListener implements Listener
         }
         else if (event.getItem().isSimilar(MaskUpgradeT1.GetItem()))
         {
-            if (event.getPlayer().getInventory().getHelmet() == null || OxygenCalculator.GetMaskTier(event.getPlayer()) != 0)
+            if (event.getPlayer().getInventory().getHelmet() == null || PlayerManager.GetMaskTier(event.getPlayer()) != 0)
                 Util.Message(event.getPlayer(), MessageManager.msg.MaskUpgrade_WrongTier);
             else
             {
-                OxygenCalculator.SetMaskTier(event.getPlayer().getInventory().getHelmet(), 1);
+                PlayerManager.SetMaskTier(event.getPlayer().getInventory().getHelmet(), 1);
                 event.getItem().setAmount(event.getItem().getAmount() - 1);
                 Util.Message(event.getPlayer(), MessageManager.msg.Success);
                 if (Config.PlayItemUpgradeSound)
@@ -63,11 +63,11 @@ public class PlayerInteractListener implements Listener
         }
         else if (event.getItem().isSimilar(MaskUpgradeT2.GetItem()))
         {
-            if (OxygenCalculator.GetMaskTier(event.getPlayer()) != 1)
+            if (PlayerManager.GetMaskTier(event.getPlayer()) != 1)
                 Util.Message(event.getPlayer(), MessageManager.msg.MaskUpgrade_WrongTier);
             else
             {
-                OxygenCalculator.SetMaskTier(event.getPlayer().getInventory().getHelmet(), 2);
+                PlayerManager.SetMaskTier(event.getPlayer().getInventory().getHelmet(), 2);
                 event.getItem().setAmount(event.getItem().getAmount() - 1);
                 Util.Message(event.getPlayer(), MessageManager.msg.Success);
                 if (Config.PlayItemUpgradeSound)
@@ -76,11 +76,11 @@ public class PlayerInteractListener implements Listener
         }
         else if (event.getItem().isSimilar(MaskUpgradeT3.GetItem()))
         {
-            if (OxygenCalculator.GetMaskTier(event.getPlayer()) != 2)
+            if (PlayerManager.GetMaskTier(event.getPlayer()) != 2)
                 Util.Message(event.getPlayer(), MessageManager.msg.MaskUpgrade_WrongTier);
             else
             {
-                OxygenCalculator.SetMaskTier(event.getPlayer().getInventory().getHelmet(), 3);
+                PlayerManager.SetMaskTier(event.getPlayer().getInventory().getHelmet(), 3);
                 event.getItem().setAmount(event.getItem().getAmount() - 1);
                 Util.Message(event.getPlayer(), MessageManager.msg.Success);
                 if (Config.PlayItemUpgradeSound)
@@ -145,7 +145,7 @@ public class PlayerInteractListener implements Listener
                 Util.Message(event.getPlayer(), MessageManager.msg.NotEnabled);
             else
             {
-                OxygenCalculator.SetOxygen(event.getPlayer(), Config.OxygenStationOxygenAdd);
+                PlayerManager.AddOxygen(event.getPlayer(), Config.OxygenStationOxygenAdd);
                 OxygenUtil.ShowOxygen(event.getPlayer());
                 if (Config.PlayRefillOxygenSound)
                     Util.PlaySound(event.getPlayer(), Sound.ENTITY_GENERIC_BURN);
@@ -176,7 +176,7 @@ public class PlayerInteractListener implements Listener
                 Util.PlaySound(event.getPlayer(), Sound.BLOCK_REDSTONE_TORCH_BURNOUT);
         }
         if (event.getPlayer().isSprinting())
-            OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnRunning / 20);
+            PlayerManager.AddOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnRunning / 20);
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
@@ -189,7 +189,7 @@ public class PlayerInteractListener implements Listener
         }
         if (event.getItem().isSimilar(OxygenTank.GetItem()))
         {
-            OxygenCalculator.ConsumeOxygenTank(event.getPlayer());
+            PlayerManager.ConsumeOxygenTank(event.getPlayer());
             event.setReplacement(OxygenTankProembryo.GetItem());
         }
     }
@@ -270,12 +270,12 @@ public class PlayerInteractListener implements Listener
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnPlayerDamaged(EntityDamageByEntityEvent event)
     {
-        if (event.getDamager() instanceof Player && OxygenCalculator.NeedOxygen(event.getDamager().getLocation()))
+        if (event.getDamager() instanceof Player && PlayerManager.NeedOxygen(event.getDamager().getLocation()))
         {
-            if (OxygenCalculator.NeedOxygen(event.getDamager().getLocation()))
+            if (PlayerManager.NeedOxygen(event.getDamager().getLocation()))
             {
                 Player player = (Player) event.getDamager();
-                OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
+                PlayerManager.AddOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
             }
         }
     }
@@ -283,10 +283,10 @@ public class PlayerInteractListener implements Listener
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnPlayerShootArrow(EntityShootBowEvent event)
     {
-        if (event.getEntity() instanceof Player && OxygenCalculator.NeedOxygen(event.getEntity().getLocation()))
+        if (event.getEntity() instanceof Player && PlayerManager.NeedOxygen(event.getEntity().getLocation()))
         {
             Player player = (Player) event.getEntity();
-            OxygenCalculator.SetOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
+            PlayerManager.AddOxygen(player, -(float) Config.OxygenReducedOnDamagedOthers);
         }
     }
 }

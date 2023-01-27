@@ -1,5 +1,6 @@
 package cn.goldenpotato.oxygensystem.Config;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 
 import java.util.HashMap;
@@ -10,8 +11,6 @@ public class Config
 {
     public static String Language;
     public static boolean IsPaper = false;
-    public static boolean OxygenBar;
-    public static boolean RoomMessage;
 
     public static void GetServerType()
     {
@@ -23,6 +22,13 @@ public class Config
         catch (ClassNotFoundException ignored)
         {
         }
+    }
+
+    public static boolean ItemsAdder = false;
+    public static void CheckItemsAdder()
+    {
+        if(Bukkit.getPluginManager().getPlugin("ItemsAdder")!=null)
+            ItemsAdder = true;
     }
 
     public static List<String> EnableWorlds;
@@ -82,4 +88,7 @@ public class Config
     public static int CheckCaveSize;
     public static double CaveP;
     public static int CaveCheckYShift;
+    public static boolean OxygenBar;
+    public static boolean RoomMessage;
+    public static boolean IA_PlayerStats_Oxygen;
 }

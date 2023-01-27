@@ -1,7 +1,7 @@
 package cn.goldenpotato.oxygensystem.Listener;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
-import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
+import cn.goldenpotato.oxygensystem.Oxygen.PlayerManager;
 import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -12,7 +12,7 @@ public class PlayerJumpListener implements Listener
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnPlayerJump(PlayerJumpEvent event)
     {
-        if(OxygenCalculator.NeedOxygen(event.getFrom()))
-            OxygenCalculator.SetOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnJumping);
+        if(PlayerManager.NeedOxygen(event.getFrom()))
+            PlayerManager.AddOxygen(event.getPlayer(), -(float) Config.OxygenReducedOnJumping);
     }
 }

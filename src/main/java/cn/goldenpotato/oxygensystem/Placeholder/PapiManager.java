@@ -1,6 +1,6 @@
 package cn.goldenpotato.oxygensystem.Placeholder;
 
-import cn.goldenpotato.oxygensystem.Oxygen.OxygenCalculator;
+import cn.goldenpotato.oxygensystem.Oxygen.PlayerManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -40,16 +40,16 @@ public class PapiManager extends PlaceholderExpansion
         switch (params)
         {
             case "oxygen":
-                return String.valueOf((int)OxygenCalculator.GetOxygen(player));
+                return String.valueOf((int) PlayerManager.GetOxygen(player));
             case "maxOxygen":
-                return String.valueOf(OxygenCalculator.GetMaxOxygen(player));
+                return String.valueOf(PlayerManager.GetMaxOxygen(player));
             case "oxygenPercent":
-                if(OxygenCalculator.GetMaxOxygen(player)==0) return "0";
-                return String.valueOf((int)(OxygenCalculator.GetOxygen(player)*100/OxygenCalculator.GetMaxOxygen(player)));
+                if(PlayerManager.GetMaxOxygen(player)==0) return "0";
+                return String.valueOf((int)(PlayerManager.GetOxygen(player)*100/ PlayerManager.GetMaxOxygen(player)));
             case "room":
             {
                 String result = "Not In Room";
-                int tmp = Math.abs(OxygenCalculator.GetRoom(player));
+                int tmp = Math.abs(PlayerManager.GetRoom(player));
                 if(tmp!=0)
                     result = String.valueOf(tmp);
                 return result;

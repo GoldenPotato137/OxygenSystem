@@ -73,6 +73,7 @@ SubCommand_Disable_NotEnabled: "§cOxygen system is not enabled at current world
 SubCommand_Enable_Usage: "§aUsage: /oxygen enable : Enable oxygen system at current world"
 SubCommand_Enable_AlreadyEnabled: "§cOxygen system is already enabled at current world"
 SubCommand_Get_Usage: "§aUsage: /oxygen get [item1] [item2] ... : Get the specified item, if there is no specified item, get all items"
+SubCommand_Give_Usage: "§aUsage: /oxygen give [player] [item|amount] [amount]: Give the specified item and amount to the specified player, if there is no specified item, give all items, if there is no specified amount, give 1"
 SubCommand_Help_Usage: "§aUsage: /oxygen help [command]: Get command list of this plugin/ Query command detail"
 SubCommand_Help_NoSuchCommand: "§cNo such command"
 SubCommand_Mask_Usage: "§aUsage: /oxygen mask : Upgrade oxygen mask of your helmet"

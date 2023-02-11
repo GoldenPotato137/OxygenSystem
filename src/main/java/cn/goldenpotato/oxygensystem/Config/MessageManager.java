@@ -64,6 +64,7 @@ public class MessageManager
         msg.SubCommand_Enable_Usage = messageReader.getString("SubCommand_Enable_Usage","");
         msg.SubCommand_Enable_AlreadyEnabled = messageReader.getString("SubCommand_Enable_AlreadyEnabled","");
         msg.SubCommand_Get_Usage = messageReader.getString("SubCommand_Get_Usage","");
+        msg.SubCommand_Give_Usage = messageReader.getString("SubCommand_Give_Usage","");
         msg.SubCommand_Help_Usage = messageReader.getString("SubCommand_Help_Usage","");
         msg.SubCommand_Help_NoSuchCommand = messageReader.getString("SubCommand_Help_NoSuchCommand","");
         msg.SubCommand_Mask_Usage = messageReader.getString("SubCommand_Mask_Usage","");

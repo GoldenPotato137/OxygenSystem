@@ -1,6 +1,7 @@
 package cn.goldenpotato.oxygensystem.Command;
 
 import cn.goldenpotato.oxygensystem.Command.SubCommands.*;
+import cn.goldenpotato.oxygensystem.Command.SubCommands.Console.Give;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Util.Util;
 import org.bukkit.command.Command;
@@ -17,6 +18,7 @@ import java.util.List;
 public class CommandManager implements CommandExecutor, TabCompleter
 {
     public static ArrayList<SubCommand> subCommands;
+    public static ArrayList<SubCommandConsole> subCommandsConsole;
 
     public static void Init()
     {
@@ -29,28 +31,34 @@ public class CommandManager implements CommandExecutor, TabCompleter
         subCommands.add(new Mask());
         subCommands.add(new Remove());
         subCommands.add(new SetWorldType());
+        subCommandsConsole = new ArrayList<>();
+        subCommandsConsole.add(new Give());
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args)
-    {
-        if(!(sender instanceof Player))
-        {
-            sender.sendMessage(MessageManager.msg.NoCommandInConsole);
-            return true;
-        }
-        if(args.length==0)
-        {
-            Util.Message(sender,MessageManager.msg.SubCommand_Help_Usage);
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (args.length == 0) {
+            Util.Message(sender, MessageManager.msg.SubCommand_Help_Usage);
             return true;
         }
         for (SubCommand subCommand : subCommands)
-            if(subCommand.name.equals(args[0]))
-            {
-                if(!sender.hasPermission(subCommand.permission))
-                    Util.Message(sender,MessageManager.msg.NoPermission);
+            if (subCommand.name.equals(args[0])) {
+                if (!(sender instanceof Player)) {
+                    sender.sendMessage(MessageManager.msg.NoCommandInConsole);
+                    return true;
+                }
+                if (!sender.hasPermission(subCommand.permission))
+                    Util.Message(sender, MessageManager.msg.NoPermission);
                 else
-                    subCommand.onCommand((Player) sender, Arrays.copyOfRange(args,1,args.length));
+                    subCommand.onCommand((Player) sender, Arrays.copyOfRange(args, 1, args.length));
+                return true;
+            }
+        for (SubCommandConsole subCommand : subCommandsConsole)
+            if (subCommand.name.equals(args[0])) {
+                if (!sender.hasPermission(subCommand.permission))
+                    Util.Message(sender, MessageManager.msg.NoPermission);
+                else
+                    subCommand.onCommand(sender, Arrays.copyOfRange(args, 1, args.length));
                 return true;
             }
         Util.Message(sender,MessageManager.msg.SubCommand_Help_NoSuchCommand);
@@ -68,11 +76,18 @@ public class CommandManager implements CommandExecutor, TabCompleter
             for (SubCommand subCommand : subCommands)
                 if(sender.hasPermission(subCommand.permission))
                     result.add(subCommand.name);
+            for (SubCommandConsole subCommand : subCommandsConsole)
+                if(sender.hasPermission(subCommand.permission))
+                    result.add(subCommand.name);
             return result;
         }
         for (SubCommand subCommand : subCommands)
             if(subCommand.name.equals(args[0]) && sender.hasPermission(subCommand.permission))
                 return subCommand.onTab((Player) sender, Arrays.copyOfRange(args,1,args.length));
+        for (SubCommandConsole subCommand : subCommandsConsole)
+            if(subCommand.name.equals(args[0]) && sender.hasPermission(subCommand.permission))
+                return subCommand.onTab(sender, Arrays.copyOfRange(args,1,args.length));
         return null;
     }
 }
+

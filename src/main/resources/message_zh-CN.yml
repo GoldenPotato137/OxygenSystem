@@ -64,6 +64,8 @@ SubCommand_Disable_NotEnabled: "§c该世界未启用氧气系统"
 SubCommand_Enable_Usage: "§a用法: /oxygen enable : 启用当前世界的氧气系统"
 SubCommand_Enable_AlreadyEnabled: "§c该世界已启用氧气系统"
 SubCommand_Get_Usage: "§a用法: /oxygen get [物品1] [物品2] ... : 获取指定物品，若没有指定物品则获取所有物品"
+#TODO: TRANSLATE
+SubCommand_Give_Usage: "§aUsage: /oxygen give [player] [item|amount] [amount]: Give the specified item and amount to the specified player, if there is no specified item, give all items, if there is no specified amount, give 1"
 SubCommand_Help_Usage: "§a用法: /oxygen help [命令]: 显示本插件的命令大全/某命令的帮助"
 SubCommand_Help_NoSuchCommand: "§c没有这个命令"
 SubCommand_Mask_Usage: "§a用法: /oxygen mask : 升级当前所戴帽子的氧气系统"

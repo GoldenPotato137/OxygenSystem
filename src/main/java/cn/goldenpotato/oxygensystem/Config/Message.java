@@ -50,6 +50,7 @@ public class Message
     public String SubCommand_Disable_Usage;
     public String SubCommand_Enable_Usage;
     public String SubCommand_Get_Usage;
+    public String SubCommand_Give_Usage;
     public String SubCommand_Mask_Usage;
     public String SubCommand_Remove_Usage;
     public String SubCommand_Help_Usage;

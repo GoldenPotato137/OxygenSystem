@@ -152,6 +152,7 @@ public class MessageManager
         msg.SubCommand_Enable_Usage = GetString("SubCommand_Enable_Usage");
         msg.SubCommand_Enable_AlreadyEnabled = GetString("SubCommand_Enable_AlreadyEnabled");
         msg.SubCommand_Get_Usage = GetString("SubCommand_Get_Usage");
+        msg.SubCommand_Give_Usage = GetString("SubCommand_Give_Usage");
         msg.SubCommand_Help_Usage = GetString("SubCommand_Help_Usage");
         msg.SubCommand_Help_NoSuchCommand = GetString("SubCommand_Help_NoSuchCommand");
         msg.SubCommand_Mask_Usage = GetString("SubCommand_Mask_Usage");

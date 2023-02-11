@@ -3,8 +3,9 @@ package cn.goldenpotato.oxygensystem.Oxygen;
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Config.WorldType;
-import cn.goldenpotato.oxygensystem.Item.OxygenTank;
-import cn.goldenpotato.oxygensystem.Item.OxygenTankProembryo;
+import cn.goldenpotato.oxygensystem.Item.ItemsAdder.IAItemsManager;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenTank;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenTankProembryo;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
 import cn.goldenpotato.oxygensystem.Util.Util;
@@ -47,12 +48,20 @@ public class PlayerManager
         return 0;
     }
 
+    /**
+     * Try to get the item stack of oxygen tank in player's inventory
+     * @param player the player
+     * @return the item stack of oxygen tank, null if not found
+     */
     public static ItemStack GetOxygenTank(Player player)
     {
         Inventory inv = player.getInventory();
         for(ItemStack item : inv.getContents())
         {
-            if (item != null && item.isSimilar(OxygenTank.GetItem()))
+            if(item == null) continue;
+            if (!Config.IA_DisableVanillaItems && item.isSimilar(OxygenTank.GetItem()))
+                return item;
+            if (Config.IA_Items && IAItemsManager.CheckItem("oxygensystem:oxygen_tank", item))
                 return item;
         }
         return null;
@@ -158,8 +167,11 @@ public class PlayerManager
         return oxygen>0;
     }
 
-
-
+    /**
+     * Add player's oxygen like consuming oxygen tank. <br>
+     * <b>This method will NOT check whether player has oxygen tank, and will NOT remove oxygen tank</b>
+     * @param player player
+     */
     public static void ConsumeOxygenTank(Player player)
     {
         AddOxygen(player, Config.OxygenTank);
@@ -195,7 +207,8 @@ public class PlayerManager
                             {
                                 oxygenTank.setAmount(oxygenTank.getAmount() - 1);
                                 PlayerManager.ConsumeOxygenTank(player);
-                                player.getInventory().addItem(OxygenTankProembryo.GetItem());
+                                player.getInventory().addItem(Config.IA_Items && Config.ItemsAdderLoaded ?
+                                        IAItemsManager.oxygenTankProembryo : OxygenTankProembryo.GetItem());
                             }
                         }
                     }

@@ -5,7 +5,7 @@ import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.ConfigManager;
 import cn.goldenpotato.oxygensystem.Config.DataManager;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
-import cn.goldenpotato.oxygensystem.Item.*;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.*;
 import cn.goldenpotato.oxygensystem.Listener.BlockListener;
 import cn.goldenpotato.oxygensystem.Listener.ItemsAdderListener;
 import cn.goldenpotato.oxygensystem.Listener.PlayerInteractListener;

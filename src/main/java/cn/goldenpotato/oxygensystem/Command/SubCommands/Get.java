@@ -2,7 +2,7 @@ package cn.goldenpotato.oxygensystem.Command.SubCommands;
 
 import cn.goldenpotato.oxygensystem.Command.SubCommand;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
-import cn.goldenpotato.oxygensystem.Item.*;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 

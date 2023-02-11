@@ -92,6 +92,8 @@ IA:
   Hud:
     OxygenHudType1: false
     OxygenHudType2: false
+  Items: false
+  DisableVanillaItems: false
 
 #Debug mode
 #In Debug mode, when creating a new airlock or destroying an airlock,

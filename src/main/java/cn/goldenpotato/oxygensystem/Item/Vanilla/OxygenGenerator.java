@@ -1,4 +1,4 @@
-package cn.goldenpotato.oxygensystem.Item;
+package cn.goldenpotato.oxygensystem.Item.Vanilla;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
@@ -9,16 +9,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class MaskUpgradeT1
+public class OxygenGenerator
 {
     static ItemStack item;
+    public static NamespacedKey oxygenGeneratorKey = new NamespacedKey(OxygenSystem.instance, "oxygen_generator");
 
     static void Init()
     {
-        item = new ItemStack(Material.PINK_TULIP);
+        item = new ItemStack(Material.SMOKER);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(MessageManager.msg.Item_MaskUpgradeT1);
-        meta.setLore(MessageManager.msg.Item_MaskUpgradeT1_Lore);
+        meta.setDisplayName(MessageManager.msg.Item_OxygenGenerator);
+        meta.setLore(MessageManager.msg.Item_OxygenGenerator_Lore);
         item.setItemMeta(meta);
     }
 
@@ -32,12 +33,12 @@ public class MaskUpgradeT1
     public static ShapedRecipe GetRecipe()
     {
         Init();
-        NamespacedKey key = new NamespacedKey(OxygenSystem.instance, "mask-upgrade-t1");
+        NamespacedKey key = new NamespacedKey(OxygenSystem.instance, "oxygen_generator");
         ShapedRecipe recipe = new ShapedRecipe(key, item);
         recipe.shape("ABC", "DEF", "GHI");
         for(int i=0;i<9;i++)
         {
-            Material material = Material.matchMaterial(Config.OxygenMaskT1Ingredient.get(i));
+            Material material = Material.matchMaterial(Config.OxygenGeneratorIngredient.get(i));
             if(material==null) material = Material.AIR;
             recipe.setIngredient((char)('A'+i), material);
         }

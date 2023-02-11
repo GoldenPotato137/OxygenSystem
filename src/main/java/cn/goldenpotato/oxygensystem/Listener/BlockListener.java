@@ -1,7 +1,10 @@
 package cn.goldenpotato.oxygensystem.Listener;
 
 import cn.goldenpotato.oxygensystem.Config.*;
-import cn.goldenpotato.oxygensystem.Item.*;
+import cn.goldenpotato.oxygensystem.Item.ItemsAdder.IAItemsManager;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenGenerator;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenStation;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenTankProembryo;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.*;
@@ -20,7 +23,7 @@ import java.util.Objects;
 
 public class BlockListener implements Listener
 {
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
     public void BlockBreak(final BlockBreakEvent event)
     {
         if (OxygenUtil.CheckOxygenGenerator(event.getBlock()))
@@ -60,13 +63,16 @@ public class BlockListener implements Listener
     public void OnBlockBuild(BlockCanBuildEvent event)
     {
         ItemStack toBuild = Objects.requireNonNull(event.getPlayer()).getInventory().getItemInMainHand();
-//        Util.Log(event.getBlock().getLocation().toString());
-        if(toBuild.isSimilar(OxygenGenerator.GetItem()))
+//        Util.Log(toBuild.toString() + "\n" + IAItemsManager.CheckItem("oxygensystem:oxygen_station", toBuild));
+        if((toBuild.isSimilar(OxygenGenerator.GetItem()) && !Config.IA_DisableVanillaItems)
+                || (Config.IA_Items && Config.ItemsAdderLoaded && IAItemsManager.CheckItem("oxygensystem:oxygen_generator", toBuild)))
         {
             OxygenUtil.SetKey(event.getBlock(), OxygenGenerator.oxygenGeneratorKey, 1);
         }
-        else if(toBuild.isSimilar(OxygenStation.GetItem()))
+        else if((toBuild.isSimilar(OxygenStation.GetItem()) && !Config.IA_DisableVanillaItems)
+                || (Config.IA_Items && Config.ItemsAdderLoaded && IAItemsManager.CheckItem("oxygensystem:oxygen_station", toBuild)))
         {
+//            Util.Log("test");
             OxygenUtil.SetKey(event.getBlock(), OxygenStation.oxygenStationKey, 1);
         }
     }

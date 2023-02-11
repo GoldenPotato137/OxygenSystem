@@ -1,7 +1,9 @@
 package cn.goldenpotato.oxygensystem.Command.SubCommands;
 
 import cn.goldenpotato.oxygensystem.Command.SubCommand;
+import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
+import cn.goldenpotato.oxygensystem.Item.ItemsAdder.IAItemsManager;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.Util;
 import org.bukkit.entity.Player;
@@ -22,6 +24,8 @@ public class Reload extends SubCommand
         try
         {
             OxygenSystem.Load();
+            if(Config.IA_Items && Config.ItemsAdderLoaded)
+                IAItemsManager.Init();
             Util.Message(player,MessageManager.msg.Success);
         }
         catch (Exception e)

@@ -2,7 +2,8 @@ package cn.goldenpotato.oxygensystem.Util;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
-import cn.goldenpotato.oxygensystem.Item.*;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenGenerator;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenStation;
 import cn.goldenpotato.oxygensystem.Oxygen.*;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
 import com.jeff_media.customblockdata.CustomBlockData;
@@ -14,6 +15,11 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class OxygenUtil
 {
+    /**
+     * Send vanilla oxygen hud to player <br>
+     * If oxygen bar disabled in config, this method will do nothing
+     * @param player player to send hud
+     */
     public static void ShowOxygen(Player player)
     {
         if(!Config.OxygenBar) return;

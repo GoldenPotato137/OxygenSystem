@@ -1,4 +1,4 @@
-package cn.goldenpotato.oxygensystem.Item;
+package cn.goldenpotato.oxygensystem.Item.Vanilla;
 
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import org.bukkit.Material;

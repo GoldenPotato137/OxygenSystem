@@ -11,6 +11,8 @@ public class Config
 {
     public static String Language;
     public static boolean IsPaper = false;
+    public static boolean IA_Items;
+    public static boolean IA_DisableVanillaItems;
 
     public static void GetServerType()
     {

@@ -3,7 +3,8 @@ package cn.goldenpotato.oxygensystem.Listener;
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Config.WorldType;
-import cn.goldenpotato.oxygensystem.Item.*;
+import cn.goldenpotato.oxygensystem.Item.ItemsAdder.IAItemsManager;
+import cn.goldenpotato.oxygensystem.Item.Vanilla.*;
 import cn.goldenpotato.oxygensystem.Oxygen.PlayerManager;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
@@ -39,8 +40,11 @@ public class PlayerInteractListener implements Listener
         if (event.getAction() == Action.PHYSICAL) return;
         if (event.getHand() != EquipmentSlot.HAND || event.getItem() == null) return;
         if (Config.GetWorldType(event.getPlayer().getWorld())== WorldType.NORMAL) return;
+        if (Config.IA_Items && (!Config.ItemsAdderLoaded)) return;
 
-        if (event.getItem().isSimilar(RoomDetector.GetItem()))
+        ItemStack item = event.getItem();
+        if ((item.isSimilar(RoomDetector.GetItem()) && !Config.IA_DisableVanillaItems)
+                || (Config.IA_Items && IAItemsManager.CheckItem("oxygensystem:room_detector", item)))
         {
             int belong = SealedRoomCalculator.GetBelong(event.getClickedBlock());
             if (belong != 0)
@@ -48,7 +52,8 @@ public class PlayerInteractListener implements Listener
             else
                 Util.Message(event.getPlayer(), MessageManager.msg.Detector_GetRoom_NoRoom);
         }
-        else if (event.getItem().isSimilar(MaskUpgradeT1.GetItem()))
+        else if ((item.isSimilar(MaskUpgradeT1.GetItem()) && !Config.IA_DisableVanillaItems)
+                || (Config.IA_Items && IAItemsManager.CheckItem("oxygensystem:mask_upgrade_t1", item)))
         {
             if (event.getPlayer().getInventory().getHelmet() == null || PlayerManager.GetMaskTier(event.getPlayer()) != 0)
                 Util.Message(event.getPlayer(), MessageManager.msg.MaskUpgrade_WrongTier);
@@ -61,7 +66,8 @@ public class PlayerInteractListener implements Listener
                     Util.PlaySound(event.getPlayer(), Sound.ENTITY_PLAYER_LEVELUP);
             }
         }
-        else if (event.getItem().isSimilar(MaskUpgradeT2.GetItem()))
+        else if ((item.isSimilar(MaskUpgradeT2.GetItem()) && !Config.IA_DisableVanillaItems)
+                || (Config.IA_Items && IAItemsManager.CheckItem("oxygensystem:mask_upgrade_t2", item)))
         {
             if (PlayerManager.GetMaskTier(event.getPlayer()) != 1)
                 Util.Message(event.getPlayer(), MessageManager.msg.MaskUpgrade_WrongTier);
@@ -74,7 +80,8 @@ public class PlayerInteractListener implements Listener
                     Util.PlaySound(event.getPlayer(), Sound.ENTITY_PLAYER_LEVELUP);
             }
         }
-        else if (event.getItem().isSimilar(MaskUpgradeT3.GetItem()))
+        else if ((item.isSimilar(MaskUpgradeT3.GetItem()) && !Config.IA_DisableVanillaItems)
+                || (Config.IA_Items && IAItemsManager.CheckItem("oxygensystem:mask_upgrade_t3", item)))
         {
             if (PlayerManager.GetMaskTier(event.getPlayer()) != 2)
                 Util.Message(event.getPlayer(), MessageManager.msg.MaskUpgrade_WrongTier);
@@ -87,7 +94,8 @@ public class PlayerInteractListener implements Listener
                     Util.PlaySound(event.getPlayer(), Sound.ENTITY_PLAYER_LEVELUP);
             }
         }
-        else if (event.getItem().isSimilar(BootStone.GetItem()))
+        else if ((item.isSimilar(BootStone.GetItem()) && !Config.IA_DisableVanillaItems)
+                || (Config.IA_Items && IAItemsManager.CheckItem("oxygensystem:boot_stone", item)))
         {
             if (OxygenUtil.CheckOxygenGenerator(event.getClickedBlock())) //OxygenGenerator
             {
@@ -187,10 +195,11 @@ public class PlayerInteractListener implements Listener
         {
             if (event.getItem().isSimilar(OxygenTank.GetItem())) event.setCancelled(true);
         }
-        if (event.getItem().isSimilar(OxygenTank.GetItem()))
+        if ((event.getItem().isSimilar(OxygenTank.GetItem()) && !Config.IA_DisableVanillaItems)
+                || (Config.IA_Items && IAItemsManager.CheckItem("oxygensystem:oxygen_tank", event.getItem())))
         {
             PlayerManager.ConsumeOxygenTank(event.getPlayer());
-            event.setReplacement(OxygenTankProembryo.GetItem());
+            event.setReplacement(Config.IA_Items?IAItemsManager.oxygenTankProembryo:OxygenTankProembryo.GetItem());
         }
     }
 

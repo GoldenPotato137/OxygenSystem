@@ -66,6 +66,8 @@ public class ConfigManager
         //ItemsAdder
         Config.IA_Hud_OxygenHudType1 = reader.getBoolean("IA.Hud.OxygenHudType1",false);
         Config.IA_Hud_OxygenHudType2 = reader.getBoolean("IA.Hud.OxygenHudType2",false);
+        Config.IA_Items = reader.getBoolean("IA.Items",false);
+        Config.IA_DisableVanillaItems = reader.getBoolean("IA.DisableVanillaItems",false);
 
         //Debug
         Config.Debug = reader.getBoolean("Debug", false);
@@ -126,6 +128,8 @@ public class ConfigManager
         //ItemsAdder
         writer.set("IA.Hud.OxygenHudType1",Config.IA_Hud_OxygenHudType1);
         writer.set("IA.Hud.OxygenHudType2",Config.IA_Hud_OxygenHudType2);
+        writer.set("IA.Items",Config.IA_Items);
+        writer.set("IA.DisableVanillaItems",Config.IA_DisableVanillaItems);
         //Debug
         writer.set("Debug",Config.Debug);
 

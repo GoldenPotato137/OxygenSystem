@@ -1,4 +1,4 @@
-package cn.goldenpotato.oxygensystem.Item;
+package cn.goldenpotato.oxygensystem.Item.Vanilla;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
@@ -9,17 +9,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class OxygenGenerator
+public class BootStone
 {
     static ItemStack item;
-    public static NamespacedKey oxygenGeneratorKey = new NamespacedKey(OxygenSystem.instance, "oxygen_generator");
 
     static void Init()
     {
-        item = new ItemStack(Material.SMOKER);
+        item = new ItemStack(Material.FLINT);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(MessageManager.msg.Item_OxygenGenerator);
-        meta.setLore(MessageManager.msg.Item_OxygenGenerator_Lore);
+        meta.setDisplayName(MessageManager.msg.Item_BootStone);
+        meta.setLore(MessageManager.msg.Item_BootStone_Lore);
         item.setItemMeta(meta);
     }
 
@@ -33,12 +32,12 @@ public class OxygenGenerator
     public static ShapedRecipe GetRecipe()
     {
         Init();
-        NamespacedKey key = new NamespacedKey(OxygenSystem.instance, "oxygen_generator");
+        NamespacedKey key = new NamespacedKey(OxygenSystem.instance, "boot_stone");
         ShapedRecipe recipe = new ShapedRecipe(key, item);
         recipe.shape("ABC", "DEF", "GHI");
         for(int i=0;i<9;i++)
         {
-            Material material = Material.matchMaterial(Config.OxygenGeneratorIngredient.get(i));
+            Material material = Material.matchMaterial(Config.BootStoneIngredient.get(i));
             if(material==null) material = Material.AIR;
             recipe.setIngredient((char)('A'+i), material);
         }

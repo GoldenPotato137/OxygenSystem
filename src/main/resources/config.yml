@@ -87,6 +87,7 @@ BootStoneIngredient: ['AIR','AIR','AIR','AIR','FLINT_AND_STEEL','IRON_INGOT','AI
 OxygenTankProembryoIngredient: ['AIR','IRON_INGOT','AIR','IRON_INGOT','SLIME_BALL','IRON_INGOT','AIR','IRON_INGOT','AIR']
 
 #ItemsAdder support
+#Check this link: https://github.com/GoldenPotato137/OxygenSystem/tree/dev/items_adder to get IA data
 #If you would like to customize HUD, SET OxygenBar and RoomMessage to false
 IA:
   Hud:

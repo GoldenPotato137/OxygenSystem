@@ -10,7 +10,6 @@ import cn.goldenpotato.oxygensystem.OxygenSystem;
 import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
 import cn.goldenpotato.oxygensystem.Util.Util;
 import dev.lone.itemsadder.api.CustomBlock;
-import dev.lone.itemsadder.api.Events.CustomBlockPlaceEvent;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -31,7 +30,8 @@ public class BlockListener implements Listener
     {
         if (OxygenUtil.CheckOxygenGenerator(event.getBlock()))
         {
-            if(CustomBlock.byAlreadyPlaced(event.getBlock()) == null) //drop item only when this is vanilla block
+            //noinspection ConstantValue
+            if(!Config.ItemsAdder || CustomBlock.byAlreadyPlaced(event.getBlock()) == null) //drop item only when this is vanilla block
             {
                 event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), OxygenGenerator.GetItem());
                 event.setDropItems(false);
@@ -48,7 +48,8 @@ public class BlockListener implements Listener
         }
         else if(OxygenUtil.CheckOxygenStation(event.getBlock()))
         {
-            if(CustomBlock.byAlreadyPlaced(event.getBlock()) == null) //drop item only when this is vanilla block
+            //noinspection ConstantValue
+            if(!Config.ItemsAdder || CustomBlock.byAlreadyPlaced(event.getBlock()) == null) //drop item only when this is vanilla block
             {
                 event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), OxygenStation.GetItem());
                 event.setDropItems(false);
@@ -65,20 +66,6 @@ public class BlockListener implements Listener
             Util.Message(event.getPlayer(), MessageManager.msg.BreakRoom + " " + Math.abs(belong));
             if(Config.PlayAirLockBreakSound)
                 Util.PlaySound(event.getPlayer(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE);
-        }
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void OnIABlockBuild(CustomBlockPlaceEvent event)
-    {
-        switch (event.getNamespacedID())
-        {
-            case "oxygensystem:oxygen_generator":
-                OxygenUtil.SetKey(event.getBlock(), OxygenGenerator.oxygenGeneratorKey, 1);
-                break;
-            case "oxygensystem:oxygen_station":
-                OxygenUtil.SetKey(event.getBlock(), OxygenStation.oxygenStationKey, 1);
-                break;
         }
     }
 

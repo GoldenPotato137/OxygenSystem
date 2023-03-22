@@ -155,6 +155,12 @@ public class PlayerInteractListener implements Listener
             {
                 PlayerManager.AddOxygen(event.getPlayer(), Config.OxygenStationOxygenAdd);
                 OxygenUtil.ShowOxygen(event.getPlayer());
+                ItemStack emptyOxygenTank = PlayerManager.GetEmptyOxygenTank(event.getPlayer());
+                if(emptyOxygenTank != null)
+                {
+                    emptyOxygenTank.add(-1);
+                    event.getPlayer().getInventory().addItem(Config.IA_Items? IAItemsManager.oxygenTank:OxygenTank.GetItem());
+                }
                 if (Config.PlayRefillOxygenSound)
                     Util.PlaySound(event.getPlayer(), Sound.ENTITY_GENERIC_BURN);
             }

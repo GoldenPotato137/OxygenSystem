@@ -1,0 +1,91 @@
+info:
+  namespace: "oxygensystem"
+font_images:
+  oxygen_bar_positive:
+    path: "oxygen_hud/positive.png"
+    y_position: -15
+  oxygen_bar_negative:
+    path: "oxygen_hud/negative.png"
+    y_position: -15
+  oxygen_bar_half:
+    path: "oxygen_hud/half.png"
+    y_position: -15
+  
+  oxygen_bar_type2_1:
+    path: "oxygen_hud/1.png"
+    y_position: -12
+  oxygen_bar_type2_2:
+    path: "oxygen_hud/2.png"
+    y_position: -12
+  oxygen_bar_type2_3:
+    path: "oxygen_hud/3.png"
+    y_position: -12
+  oxygen_bar_type2_4:
+    path: "oxygen_hud/4.png"
+    y_position: -12
+  oxygen_bar_type2_5:
+    path: "oxygen_hud/5.png"
+    y_position: -12
+  oxygen_bar_type2_6:
+    path: "oxygen_hud/6.png"
+    y_position: -12
+  oxygen_bar_type2_7:
+    path: "oxygen_hud/7.png"
+    y_position: -12
+  oxygen_bar_type2_8:
+    path: "oxygen_hud/8.png"
+    y_position: -12
+  oxygen_bar_type2_9:
+    path: "oxygen_hud/9.png"
+    y_position: -12
+  oxygen_bar_type2_10:
+    path: "oxygen_hud/10.png"
+    y_position: -12
+  oxygen_bar_type2_11:
+    path: "oxygen_hud/11.png"
+    y_position: -12
+  oxygen_bar_type2_12:
+    path: "oxygen_hud/12.png"
+    y_position: -12
+  oxygen_bar_type2_13:
+    path: "oxygen_hud/13.png"
+    y_position: -12
+  oxygen_bar_type2_14:
+    path: "oxygen_hud/14.png"
+    y_position: -12
+  oxygen_bar_type2_15:
+    path: "oxygen_hud/15.png"
+    y_position: -12
+  oxygen_bar_type2_16:
+    path: "oxygen_hud/16.png"
+    y_position: -12
+  oxygen_bar_type2_17:
+    path: "oxygen_hud/17.png"
+    y_position: -12
+  oxygen_bar_type2_18:
+    path: "oxygen_hud/18.png"
+    y_position: -12
+  oxygen_bar_type2_19:
+    path: "oxygen_hud/19.png"
+    y_position: -12
+  oxygen_bar_type2_20:
+    path: "oxygen_hud/20.png"
+    y_position: -12
+  oxygen_bar_type2_21:
+    path: "oxygen_hud/21.png"
+    y_position: -12
+  oxygen_bar_type2_22:
+    path: "oxygen_hud/22.png"
+    y_position: -12
+  oxygen_bar_type2_23:
+    path: "oxygen_hud/23.png"
+    y_position: -12
+  oxygen_bar_type2_24:
+    path: "oxygen_hud/24.png"
+    y_position: -12
+  oxygen_bar_type2_25:
+    path: "oxygen_hud/25.png"
+    y_position: -12
+  oxygen_bar_type2_26:
+    path: "oxygen_hud/26.png"
+    y_position: -12

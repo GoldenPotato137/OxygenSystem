@@ -1,0 +1,38 @@
+info:
+  namespace: oxygensystem
+items:
+  oxygen_generator:
+    display_name: display_name_oxygen_generator
+    resource:
+      generate: true
+      material: PAPER
+      textures:
+        - block/oxygen_generator/bottom.png #bottom
+        - block/oxygen_generator/front.png #east
+        - block/oxygen_generator/side.png #north
+        - block/oxygen_generator/side.png #south
+        - block/oxygen_generator/top.png #top
+        - block/oxygen_generator/front.png #west
+    specific_properties:
+      block:
+        placed_model:
+          type: REAL_NOTE
+          break_particles: ITEM
+
+  oxygen_station:
+    display_name: display_name_oxygen_station
+    resource:
+      generate: true
+      material: PAPER
+      textures:
+        - block/oxygen_station/bottom.png #bottom
+        - block/oxygen_station/front.png #east
+        - block/oxygen_station/side.png #north
+        - block/oxygen_station/side.png #south
+        - block/oxygen_station/top.png #top
+        - block/oxygen_station/front.png #west
+    specific_properties:
+      block:
+        placed_model:
+          type: REAL_NOTE
+          break_particles: ITEM

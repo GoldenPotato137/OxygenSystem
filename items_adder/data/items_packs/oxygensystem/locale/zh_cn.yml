@@ -1,0 +1,14 @@
+info:
+  namespace: oxygensystem
+  dictionary-lang: zh_cn
+dictionary:
+  display_name_room_detector: "§b§l气密室检测器"
+  display_name_boot_stone: "§b§l启动石"
+  display_name_oxygen_tank: "§b§l氧气罐"
+  display_name_oxygen_tank_proembryo: "§b§l氧气罐原胚"
+  display_name_mask_upgrade_t1: "§b§l氧气系统升级器-§c§lT1"
+  display_name_mask_upgrade_t2: "§b§l氧气系统升级器-§c§lT2"
+  display_name_mask_upgrade_t3: "§b§l氧气系统升级器-§c§lT3"
+
+  display_name_oxygen_generator: §b§l氧气生成器
+  display_name_oxygen_station: "§b§l氧气站"

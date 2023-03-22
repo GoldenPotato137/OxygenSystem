@@ -1,13 +1,16 @@
 package cn.goldenpotato.oxygensystem.Listener;
 
-import cn.goldenpotato.oxygensystem.Config.*;
-import cn.goldenpotato.oxygensystem.Item.ItemsAdder.IAItemsManager;
+import cn.goldenpotato.oxygensystem.Config.Config;
+import cn.goldenpotato.oxygensystem.Config.MessageManager;
 import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenGenerator;
 import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenStation;
 import cn.goldenpotato.oxygensystem.Item.Vanilla.OxygenTankProembryo;
 import cn.goldenpotato.oxygensystem.Oxygen.SealedRoomCalculator;
 import cn.goldenpotato.oxygensystem.OxygenSystem;
-import cn.goldenpotato.oxygensystem.Util.*;
+import cn.goldenpotato.oxygensystem.Util.OxygenUtil;
+import cn.goldenpotato.oxygensystem.Util.Util;
+import dev.lone.itemsadder.api.CustomBlock;
+import dev.lone.itemsadder.api.Events.CustomBlockPlaceEvent;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -28,9 +31,12 @@ public class BlockListener implements Listener
     {
         if (OxygenUtil.CheckOxygenGenerator(event.getBlock()))
         {
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), OxygenGenerator.GetItem());
+            if(CustomBlock.byAlreadyPlaced(event.getBlock()) == null) //drop item only when this is vanilla block
+            {
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), OxygenGenerator.GetItem());
+                event.setDropItems(false);
+            }
             OxygenUtil.RemoveKey(event.getBlock(),OxygenGenerator.oxygenGeneratorKey);
-            event.setDropItems(false);
             if(SealedRoomCalculator.GetBelong(event.getBlock())!=0)
             {
                 Util.Message(event.getPlayer(), MessageManager.msg.BreakRoom + " " + Math.abs(SealedRoomCalculator.GetBelong(event.getBlock())));
@@ -42,9 +48,12 @@ public class BlockListener implements Listener
         }
         else if(OxygenUtil.CheckOxygenStation(event.getBlock()))
         {
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), OxygenStation.GetItem());
+            if(CustomBlock.byAlreadyPlaced(event.getBlock()) == null) //drop item only when this is vanilla block
+            {
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), OxygenStation.GetItem());
+                event.setDropItems(false);
+            }
             OxygenUtil.RemoveKey(event.getBlock(),OxygenStation.oxygenStationKey);
-            event.setDropItems(false);
         }
 
         int belong = SealedRoomCalculator.GetBelong(event.getBlock());
@@ -60,19 +69,29 @@ public class BlockListener implements Listener
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void OnIABlockBuild(CustomBlockPlaceEvent event)
+    {
+        switch (event.getNamespacedID())
+        {
+            case "oxygensystem:oxygen_generator":
+                OxygenUtil.SetKey(event.getBlock(), OxygenGenerator.oxygenGeneratorKey, 1);
+                break;
+            case "oxygensystem:oxygen_station":
+                OxygenUtil.SetKey(event.getBlock(), OxygenStation.oxygenStationKey, 1);
+                break;
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void OnBlockBuild(BlockCanBuildEvent event)
     {
         ItemStack toBuild = Objects.requireNonNull(event.getPlayer()).getInventory().getItemInMainHand();
-//        Util.Log(toBuild.toString() + "\n" + IAItemsManager.CheckItem("oxygensystem:oxygen_station", toBuild));
-        if((toBuild.isSimilar(OxygenGenerator.GetItem()) && !Config.IA_DisableVanillaItems)
-                || (Config.IA_Items && Config.ItemsAdderLoaded && IAItemsManager.CheckItem("oxygensystem:oxygen_generator", toBuild)))
+        if(toBuild.isSimilar(OxygenGenerator.GetItem()) && !Config.IA_DisableVanillaItems)
         {
             OxygenUtil.SetKey(event.getBlock(), OxygenGenerator.oxygenGeneratorKey, 1);
         }
-        else if((toBuild.isSimilar(OxygenStation.GetItem()) && !Config.IA_DisableVanillaItems)
-                || (Config.IA_Items && Config.ItemsAdderLoaded && IAItemsManager.CheckItem("oxygensystem:oxygen_station", toBuild)))
+        else if(toBuild.isSimilar(OxygenStation.GetItem()) && !Config.IA_DisableVanillaItems)
         {
-//            Util.Log("test");
             OxygenUtil.SetKey(event.getBlock(), OxygenStation.oxygenStationKey, 1);
         }
     }

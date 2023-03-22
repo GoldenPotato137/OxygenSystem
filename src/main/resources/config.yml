@@ -92,7 +92,9 @@ IA:
   Hud:
     OxygenHudType1: false
     OxygenHudType2: false
+  # Whether to enable ItemsAdder items
   Items: false
+  # Whether to disable vanilla items
   DisableVanillaItems: false
 
 #Debug mode

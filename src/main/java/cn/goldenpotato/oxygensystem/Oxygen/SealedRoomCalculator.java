@@ -67,6 +67,13 @@ public class SealedRoomCalculator
     }
 
     Material[] glasses = {Material.RED_STAINED_GLASS,Material.ORANGE_STAINED_GLASS,Material.YELLOW_STAINED_GLASS,Material.GREEN_STAINED_GLASS,Material.BLUE_STAINED_GLASS};
+
+    /**
+     * Try to add/expand sealed room base on this block
+     * @param location base block location
+     * @param no sealed room id. 0 to add new room. other number to expand this room
+     * @return 0: success <br> 1: unable to add new room here <br> 2: unable to expand this room. You should remove the room after this
+     */
     public int AddSealedRoom(Location location,int no)
     {
         if(no!=0) SetBelong(location,no,false);

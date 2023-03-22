@@ -1,0 +1,163 @@
+info:
+  namespace: oxygensystem
+items:
+  room_detector:
+    display_name: display_name_room_detector
+    resource:
+      material: STICK
+      generate: true
+      textures:
+      - item/room_detector.png
+
+  boot_stone:
+    display_name: display_name_boot_stone
+    resource:
+      material: FLINT
+      generate: true
+      textures:
+      - item/boot_stone.png
+
+  oxygen_tank:
+    display_name: display_name_oxygen_tank
+    resource:
+      material: POTION
+      generate: true
+      textures:
+      - item/oxygen_tank.png
+    enchants:
+      - DURABILITY:1
+    item_flags:
+      - HIDE_ENCHANTS
+  
+  oxygen_tank_proembryo:
+    display_name: display_name_oxygen_tank_proembryo
+    resource:
+      material: POTION
+      generate: true
+      textures:
+      - item/oxygen_tank_proembryo.png
+
+  mask_upgrade_t1:
+    display_name: display_name_mask_upgrade_t1
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - item/mask_upgrade_t1.png
+  
+  mask_upgrade_t2:
+    display_name: display_name_mask_upgrade_t2
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - item/mask_upgrade_t2.png
+
+  mask_upgrade_t3:
+    display_name: display_name_mask_upgrade_t3
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - item/mask_upgrade_t3.png
+
+
+recipes:
+  crafting_table:
+    boot_stone:
+      enable: true
+      pattern:
+        - AAA
+        - AFI
+        - AIA
+      ingredients:
+        F: FLINT_AND_STEEL
+        I: IRON_INGOT
+        A: AIR
+      result:
+        item: oxygensystem:boot_stone
+        amount: 1
+    
+    oxygen_tank_proembryo:
+      enable: true
+      pattern:
+        - AIA
+        - ISI
+        - AIA
+      ingredients:
+        S: SLIME_BALL
+        I: IRON_INGOT
+        A: AIR
+      result:
+        item: oxygensystem:oxygen_tank_proembryo
+        amount: 1
+    
+    mask_upgrade_t1:
+      enable: true
+      pattern:
+        - CCC
+        - CIC
+        - CCC
+      ingredients:
+        C: COAL
+        I: IRON_INGOT
+      result:
+        item: oxygensystem:mask_upgrade_t1
+        amount: 1
+    
+    mask_upgrade_t2:
+      enable: true
+      pattern:
+        - ADA
+        - DGD
+        - ADA
+      ingredients:
+        A: AIR
+        D: DIAMOND
+        G: GOLD_INGOT
+      result:
+        item: oxygensystem:mask_upgrade_t2
+        amount: 1
+      
+    mask_upgrade_t3:
+      enabled: true
+      pattern:
+        - ADA
+        - DND
+        - ADA
+      ingredients:
+        A: AIR
+        D: DIAMOND
+        N: NETHER_STAR
+      result:
+        item: oxygensystem:mask_upgrade_t3
+        amount: 1
+    
+    oxygen_generator:
+      enable: true
+      pattern:
+        - IGI
+        - DSD
+        - IGI
+      ingredients:
+        I: IRON_INGOT
+        D: DIAMOND
+        G: GOLD_INGOT
+        S: SMOKER
+      result:
+        item: oxygensystem:oxygen_generator
+        amount: 1
+    
+    oxygen_station:
+      enable: true
+      pattern:
+        - IGI
+        - GLG
+        - IGI
+      ingredients:
+        I: IRON_INGOT
+        G: GOLD_INGOT
+        L: LOOM
+      result:
+        item: oxygensystem:oxygen_station
+        amount: 1

@@ -67,6 +67,26 @@ public class PlayerManager
         return null;
     }
 
+    /**
+     * Try to get the item stack of empty oxygen tank in player's inventory
+     * @param player the player
+     * @return the item stack of oxygen tank, null if not found
+     */
+    public static ItemStack GetEmptyOxygenTank(Player player)
+    {
+        Inventory inv = player.getInventory();
+        for(ItemStack item : inv.getContents())
+        {
+            if(item == null) continue;
+            if (!Config.IA_DisableVanillaItems && item.isSimilar(OxygenTankProembryo.GetItem()))
+                return item;
+            if (Config.IA_Items && IAItemsManager.CheckItem("oxygensystem:oxygen_tank_proembryo", item))
+                return item;
+        }
+        return null;
+    }
+
+
     public static int GetMaskTier(ItemStack itemStack)
     {
         ItemMeta itemMeta = itemStack.getItemMeta();

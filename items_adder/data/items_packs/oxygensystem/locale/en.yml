@@ -1,0 +1,14 @@
+info:
+  namespace: oxygensystem
+  dictionary-lang: en
+dictionary:
+  display_name_room_detector: "§b§lAirlock Detector"
+  display_name_boot_stone: "§b§lStart Stone"
+  display_name_oxygen_tank: "§b§lOxygen Tank"
+  display_name_oxygen_tank_proembryo: "§b§lOxygen Tank (Empty)"
+  display_name_mask_upgrade_t1: "§b§lOxygen system Upgrader-§c§lT1"
+  display_name_mask_upgrade_t2: "§b§lOxygen system Upgrader-§c§lT2"
+  display_name_mask_upgrade_t3: "§b§lOxygen system Upgrader-§c§lT3"
+
+  display_name_oxygen_generator: "§b§lOxygen Generator"
+  display_name_oxygen_station: "§b§lOxygen Station"

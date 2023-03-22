@@ -1,0 +1,65 @@
+# Don't forget to enable IA hud in config.yml if you want to use IA huds.
+# And disable vallina huds by setting OxygenBar and RoomMessage to false in config.yml
+
+info:
+  namespace: "oxygensystem"
+huds:
+  oxygen_hud_type1:
+    enabled: true
+    show:
+      auto: false
+      creative: false
+      underwater: false
+      riding: false
+    type: STATUS
+    x_position_pixels: 9
+    value:
+      player_stat_name: "oxygen"
+      start: 0
+      min: 0
+      max: 10
+    images:
+        positive: "oxygensystem:oxygen_bar_positive"
+        half: "oxygensystem:oxygen_bar_half"
+        negative: "oxygensystem:oxygen_bar_negative"
+  
+  oxygen_hud_type2:
+    enabled: true
+    show:
+      auto: false
+      creative: false
+    type: FRAMES
+    x_position_pixels: -158
+    value:
+      player_stat_name: "oxygen2"
+      start: 0
+      min: 0
+      max: 25
+    images:
+      frames:
+        - "oxygensystem:oxygen_bar_type2_1"
+        - "oxygensystem:oxygen_bar_type2_2"
+        - "oxygensystem:oxygen_bar_type2_3"
+        - "oxygensystem:oxygen_bar_type2_4"
+        - "oxygensystem:oxygen_bar_type2_5"
+        - "oxygensystem:oxygen_bar_type2_6"
+        - "oxygensystem:oxygen_bar_type2_7"
+        - "oxygensystem:oxygen_bar_type2_8"
+        - "oxygensystem:oxygen_bar_type2_9"
+        - "oxygensystem:oxygen_bar_type2_10"
+        - "oxygensystem:oxygen_bar_type2_11"
+        - "oxygensystem:oxygen_bar_type2_12"
+        - "oxygensystem:oxygen_bar_type2_13"
+        - "oxygensystem:oxygen_bar_type2_14"
+        - "oxygensystem:oxygen_bar_type2_15"
+        - "oxygensystem:oxygen_bar_type2_16"
+        - "oxygensystem:oxygen_bar_type2_17"
+        - "oxygensystem:oxygen_bar_type2_18"
+        - "oxygensystem:oxygen_bar_type2_19"
+        - "oxygensystem:oxygen_bar_type2_20"
+        - "oxygensystem:oxygen_bar_type2_21"
+        - "oxygensystem:oxygen_bar_type2_22"
+        - "oxygensystem:oxygen_bar_type2_23"
+        - "oxygensystem:oxygen_bar_type2_24"
+        - "oxygensystem:oxygen_bar_type2_25"
+        - "oxygensystem:oxygen_bar_type2_26"

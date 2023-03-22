@@ -1,5 +1,5 @@
 # Here is the original of all the messages (Written in Chinglish)
-# Any message missing in the locale file will be filled with the original message (in runtime)
+# Any message missing in the locale file will be filled with following message (in runtime)
 
 NoPermission: "§cYou don't have permission to use this command."
 NoCommandInConsole: "§cYou can't use this command in console."

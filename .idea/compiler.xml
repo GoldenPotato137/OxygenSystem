@@ -9,8 +9,5 @@
         <module name="OxygenSystem" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="OxygenSystem" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

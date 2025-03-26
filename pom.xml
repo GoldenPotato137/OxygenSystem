@@ -81,9 +81,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.jeff_media</groupId>
-            <artifactId>CustomBlockData</artifactId>
-            <version>2.1.0</version>
+            <groupId>com.jeff-media</groupId>
+            <artifactId>custom-block-data</artifactId>
+            <version>2.2.4</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

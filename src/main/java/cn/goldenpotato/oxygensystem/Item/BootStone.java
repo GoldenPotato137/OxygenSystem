@@ -2,9 +2,8 @@ package cn.goldenpotato.oxygensystem.Item;
 
 import cn.goldenpotato.oxygensystem.Config.Config;
 import cn.goldenpotato.oxygensystem.Config.MessageManager;
-import cn.goldenpotato.oxygensystem.OxygenSystem;
+import cn.goldenpotato.oxygensystem.Util.ItemUtil;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -32,15 +31,6 @@ public class BootStone
     public static ShapedRecipe GetRecipe()
     {
         Init();
-        NamespacedKey key = new NamespacedKey(OxygenSystem.instance, "boot_stone");
-        ShapedRecipe recipe = new ShapedRecipe(key, item);
-        recipe.shape("ABC", "DEF", "GHI");
-        for(int i=0;i<9;i++)
-        {
-            Material material = Material.matchMaterial(Config.BootStoneIngredient.get(i));
-            if(material==null) material = Material.AIR;
-            recipe.setIngredient((char)('A'+i), material);
-        }
-        return recipe;
+        return ItemUtil.MakeRecipe("boot_stone", item, Config.BootStoneIngredient);
     }
 }

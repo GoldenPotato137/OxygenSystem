@@ -12,7 +12,7 @@ public class MessageManager
     public static void LoadMessage()
     {
         msg = new Message();
-        OxygenSystem.instance.saveResource("message_"+Config.Language +".yml",true);
+        OxygenSystem.instance.saveResource("message_"+Config.Language +".yml",false);
         File messageFile = new File(OxygenSystem.instance.getDataFolder(), "message_"+Config.Language +".yml");
         FileConfiguration messageReader = YamlConfiguration.loadConfiguration(messageFile);
 
